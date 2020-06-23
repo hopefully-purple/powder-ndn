@@ -88,8 +88,8 @@ def create_routers(instantiateOn='pnode', cores=4, ram=8):
     #for router in routers:
     if router is not None:
             #if odd_router:
-    router.addService(pg.Execute(shell="sh", command="chmod +x /local/repository/install1.sh"))
-    router.addService(pg.Execute(shell="sh", command="/local/repository/install1.sh"))
+        router.addService(pg.Execute(shell="sh", command="chmod +x /local/repository/install1.sh"))
+        router.addService(pg.Execute(shell="sh", command="/local/repository/install1.sh"))
             #else:
              #   router.addService(pg.Execute(shell="sh", command="chmod +x /local/repository/install2.sh"))
               #  router.addService(pg.Execute(shell="sh", command="/local/repository/install2.sh"))
