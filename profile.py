@@ -80,20 +80,20 @@ def create_routers(instantiateOn='pnode', cores=4, ram=8):
     routers.append(None)
 
     # create each VM
-    #for i in range(1, 3):
-    routers.append(mkVM('router' + str(1), GLOBALS.UBUNTU18_IMG, instantiateOn=instantiateOn, cores=cores, ram=ram))
+    for i in range(1, 3):
+        routers.append(mkVM('router' + str(i), GLOBALS.UBUNTU18_IMG, instantiateOn=instantiateOn, cores=cores, ram=ram))
 
     # run alternating install scripts on each vm to install software
-    #odd_router = True
+    odd_router = True
     for router in routers:
         if router is not None:
-            #if odd_router:
-            router.addService(pg.Execute(shell="sh", command="chmod +x /local/repository/install1.sh"))
-            router.addService(pg.Execute(shell="sh", command="/local/repository/install1.sh"))
-            #else:
-             #   router.addService(pg.Execute(shell="sh", command="chmod +x /local/repository/install2.sh"))
-              #  router.addService(pg.Execute(shell="sh", command="/local/repository/install2.sh"))
-            #odd_router = not odd_router
+            if odd_router:
+                router.addService(pg.Execute(shell="sh", command="chmod +x /local/repository/install1.sh"))
+                router.addService(pg.Execute(shell="sh", command="/local/repository/install1.sh"))
+            else:
+                router.addService(pg.Execute(shell="sh", command="chmod +x /local/repository/install2.sh"))
+                router.addService(pg.Execute(shell="sh", command="/local/repository/install2.sh"))
+            odd_router = not odd_router
 
     return routers
 
@@ -120,14 +120,14 @@ for node in nodes1:
         LAN1.addInterface(node.addInterface())
 
 # setup the second LAN
-#LAN2 = request.LAN("LAN2")
-#LAN2.addInterface(routers[2].addInterface())
+LAN2 = request.LAN("LAN2")
+LAN2.addInterface(routers[2].addInterface())
 #for node in nodes2:
     #if node is not None:
         #LAN2.addInterface(node.addInterface())
 
 # setup a link between routerss
-#request.Link(members=[routers[1], routers[2]])
+request.Link(members=[routers[1], routers[2]])
 
 # output request
 pc.printRequestRSpec(request)
