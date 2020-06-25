@@ -34,4 +34,30 @@
 
 
 
+__________________
+Hope's Notes and To Do List:
+1. Figure out how to constrain PIT
+2. Add a second node to the LAN and play with requesting
+3. Begin victim script (just get the control case to work)
+	3.1 Get requests to work
+	3.2 Figure out how to time and record
+
+Things I've discovered: 
+When Router2 hosts data that the client wants, NDN works successfully with Router1 as the middle.
+Routers can hold multiple data under different prefixes at once: echo "data" | ndnpoke /ndn/data &
+
+ProTips:
+Router1: nfdc route add /ndn/ udp4://10.10.2.2
+Router2: nfdc route add /ndn/ udp4://10.10.2.1
+
+When you create a route, the router you ran "route add" on will then be able to *receive* data hosted by the router you connected to. 
+Example:
+router1-1:~> nfdc route add /ndn/ udp4:10.10.2.2
+router2-1:~> echo "data" | ndnpoke /ndn/data
+router1-1:~> ndnpeek -p /ndn/data
+data
+
+nfdc face list | grep "udp4"
+
+
 
