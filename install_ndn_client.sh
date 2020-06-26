@@ -7,3 +7,9 @@ sudo pip3 install pyndn
 
 # copy the client code to the user's home directory
 cp /local/repository/request_data.py ~/
+
+#copy the testing code to the user's home directory
+cp /local/repository/begin_testing.py ~/
+
+#copy the stats file to the user's home directory
+cp /local/repository/stats_file.txt ~/
