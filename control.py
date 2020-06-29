@@ -27,25 +27,30 @@
 
 import math
 import time
-from pyndn import Name
+#from pyndn import Name
+from make_requests import MakeRequests
+
 
 class Control():
     """This class holds settings and algorithms for the Control Case"""
     def __init__(self, reqs, repits):
-        self.total_reqs = reqs
-        self.reps = repits
+        self.total_reqs = int(reqs)
+        self.reps = int(repits)
         self.list = []
+        self.requests = []
 
     def read_file(self):
         """Reads file and stores each word in a list. Only stores the specified number of requests"""
         print("Reading File")
 
         # Open nlsr.conf and read in specified number of words
-        with open('~/nlsr/nlsr.conf', 'r') as input_file:
-            print("succesfully opened file")
+        with open('random.txt', 'r') as input_file:
+            print("successfully opened file")
             num = 0
             for line in input_file:
                 for word in line.split():
+#                   if "<" in word or ">" in word:
+#                       pass
                     if num < self.total_reqs:
                         num += 1
                         self.list.append(word)
@@ -57,11 +62,33 @@ class Control():
     def generate_request_strings(self):
         """Takes the list of words and adds the prefix to them"""
         print("Generating requests")
+
+        for item in self.list:
+            request = "/ndn/" + item
+            self.requests.append(request)
+
+        print("Size of Request List: ", len(self.requests))        
+
+       #with open('stats_file.txt', 'a') as output_file:
+       #    for item in self.list:
+       #        request = "/ndn/" + item + "\n"
+       #        output_file.write(request)
+        
         return 0
 
-    def send_request(self):
+    def send_request(self, request, i):
         """Uses PyNDN to send a single request"""
-        print("Send a request")
+       #print("Send a request")
+
+        with open('stats_file.txt', 'a') as output_file:
+            output_file.write(f"Rep #{i}")
+            nl_req = request + "\n"
+            output_file.write(nl_req)
+            print(f"|{request}|")            
+       
+        make = MakeRequests()
+        make.run_reqs(request)
+
         return 0
 
     def test(self):
@@ -73,9 +100,11 @@ class Control():
         self.generate_request_strings()
 
         # Loop for the number of repetitions
+        print("Sending requests")
         for i in range(0, self.reps):
+            print(f"Repition #{i}\n")
             # Send specified number of requests
-            for request in self.list:
-                self.send_request()
+            for request in self.requests:
+                self.send_request(request, i)
 
 
