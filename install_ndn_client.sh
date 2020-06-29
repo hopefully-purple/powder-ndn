@@ -13,3 +13,6 @@ cp /local/repository/begin_testing.py ~/
 
 #copy the stats file to the user's home directory
 cp /local/repository/stats_file.txt ~/
+
+#copy the control file to the user's home directory
+cp /local/repository/control.py ~/
