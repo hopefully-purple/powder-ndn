@@ -36,11 +36,12 @@
 
 __________________
 Hope's Notes and To Do List:
-1. Figure out how to constrain PIT
-2. Add a second node to the LAN and play with requesting
-3. Begin victim script (just get the control case to work)
-	3.1 Get requests to work
-	3.2 Figure out how to time and record
+1. Add a second node to the LAN and play with requesting
+2. Begin victim script (just get the control case to work)
+	2.1 Get requests to work
+	2.2 Figure out how to time and record
+3. Add the copy line to both install scripts to get the txt files in there
+4. Also create a hosting script and add those to the install scripts as well.
 
 Things I've discovered: 
 When Router2 hosts data that the client wants, NDN works successfully with Router1 as the middle.
