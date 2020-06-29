@@ -17,6 +17,11 @@ cp /local/repository/stats_file.txt ~/
 # copy the control file to the user's home directory
 cp /local/repository/control.py ~/
 
+cp /local/repository/counter.py ~/
+
+cp /local/repository/make_requests.py ~/
+
 # copy the two .txt files into the user's home directory
 cp /local/repository/dictionary.txt ~/
 cp /local/repository/alicewonderland.txt ~/
+cp /local/repository/random.txt ~/
