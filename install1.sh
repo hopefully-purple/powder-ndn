@@ -17,6 +17,7 @@ sudo apt-get install libpsync -y
 
 #install x11 apps
 sudo apt-get install x11-apps -y 
+sudo apt-get install strace -y
 
 # create a directory for nlsr logging
 mkdir -p ~/nlsr/log/
