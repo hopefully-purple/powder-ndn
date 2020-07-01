@@ -15,7 +15,7 @@ def questions(ctrl):
         if num_reqs != "":
             ctrl.total_reqs = int(num_reqs) 
         num_reps = input(f"Number of Repetitions = {ctrl.reps} : ")
-        if num_reqs != "":
+        if num_reps != "":
             ctrl.reps = int(num_reps)    
         wipe = input("Wipe stats_file?(y/n):")
         

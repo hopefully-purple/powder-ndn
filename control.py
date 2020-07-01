@@ -84,7 +84,7 @@ class Control():
             output_file.write(f"Rep #{i}")
             nl_req = request + "\n"
             output_file.write(nl_req)
-            print(f"|{request}|")            
+#           print(f"|{request}|")            
        
         make = MakeRequests()
         make.run_reqs(request)
