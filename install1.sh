@@ -24,5 +24,7 @@ cp /local/repository/nlsr1.conf ~/nlsr/nlsr.conf
 # copy a .vimrc on each VM (provides useful remappings)
 cp /local/repository/.vimrc ~/
 
+cp /local/repository/host_data.py ~/
+
 # create a udp tunnel
 nfdc face create udp4://10.10.2.2 persistency permanent
