@@ -15,6 +15,9 @@ sudo apt-get install nlsr -y
 sudo apt-get install libchronosync -y
 sudo apt-get install libpsync -y
 
+#install x11 apps
+sudo apt-get install x-11 apps -y
+
 # create a directory for nlsr logging
 mkdir -p ~/nlsr/log/
 
