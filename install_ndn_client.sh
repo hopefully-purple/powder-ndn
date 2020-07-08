@@ -7,6 +7,7 @@ sudo pip3 install pyndn
 
 sudo apt-get install x11-apps -y
 sudo apt-get install strace -y
+sudo apt-get install wireshark -y
 
 # copy the client code to the user's home directory
 cp /local/repository/request_data.py ~/
@@ -27,4 +28,5 @@ cp /local/repository/make_requests.py ~/
 # copy the two .txt files into the user's home directory
 cp /local/repository/dictionary.txt ~/
 cp /local/repository/alicewonderland.txt ~/
-cp /local/repository/random.txt ~/
+cp /local/repository/alice.txt ~/
+cp /local/repository/whole_dict.txt ~/

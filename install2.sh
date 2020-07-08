@@ -19,6 +19,9 @@ sudo apt-get install libpsync -y
 sudo apt-get install x11-apps -y 
 sudo apt-get install strace -y
 
+#install wireshark
+sudo apt-get install wireshark -y
+
 # create a directory for nlsr logging
 mkdir -p ~/nlsr/log/
 
@@ -29,6 +32,9 @@ cp /local/repository/nlsr2.conf ~/nlsr/nlsr.conf
 cp /local/repository/.vimrc ~/
 
 cp /local/repository/host_data.py ~/
+cp /local/repository/alice.txt ~/
+cp /local/repository/nfdc_status.txt ~/
+cp /local/repository/whole_dict.txt ~/
 
 # create a udp tunnel
 nfdc face create udp4://10.10.2.1 persistency permanent
