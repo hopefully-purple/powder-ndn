@@ -39,4 +39,4 @@ cp /local/repository/alice.txt ~/
 cp /local/repository/whole_dict.txt ~/
 
 # create a udp tunnel
-#nfdc face create udp4://10.10.2.2 persistency permanent
+nfdc face create udp4://10.10.2.2 persistency permanent
