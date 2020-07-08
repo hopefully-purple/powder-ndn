@@ -22,6 +22,8 @@ def questions(ctrl):
         if wipe == "y":
             with open('stats_file.txt', 'w') as stats:
                 stats.write("A clean slate!\n") #Eventually print out the settings
+                stats.write(f"Requests per Rep: {ctrl.total_reqs}\t Total Reps: {ctrl.reps}\n")
+		stats.write("CONTROL CASE\n")
         elif wipe == "n":
             with open('stats_file.txt', 'a') as stats:
                 stats.write("\n ANOTHER RUN\n")
