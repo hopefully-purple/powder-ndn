@@ -90,9 +90,9 @@ def create_routers(instantiateOn='pnode', cores=4, ram=8):
             if odd_router:
                 router.addService(pg.Execute(shell="sh", command="chmod +x /local/repository/install1.sh"))
                 router.addService(pg.Execute(shell="sh", command="/local/repository/install1.sh"))
-            else:
-                router.addService(pg.Execute(shell="sh", command="chmod +x /local/repository/install2.sh"))
-                router.addService(pg.Execute(shell="sh", command="/local/repository/install2.sh"))
+ #           else:
+ #               router.addService(pg.Execute(shell="sh", command="chmod +x /local/repository/install2.sh"))
+ #               router.addService(pg.Execute(shell="sh", command="/local/repository/install2.sh"))
             odd_router = not odd_router
 
     return routers
@@ -127,7 +127,7 @@ for node in nodes1:
         #LAN2.addInterface(node.addInterface())
 
 # setup a link between routerss
-request.Link(members=[routers[1], routers[2]])
+#request.Link(members=[routers[1], routers[2]])
 
 # output request
 pc.printRequestRSpec(request)
