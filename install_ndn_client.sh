@@ -26,7 +26,7 @@ cp /local/repository/counter.py ~/
 cp /local/repository/make_requests.py ~/
 
 # copy the two .txt files into the user's home directory
-cp /local/repository/dictionary.txt ~/
-cp /local/repository/alicewonderland.txt ~/
+#cp /local/repository/dictionary.txt ~/
+#cp /local/repository/alicewonderland.txt ~/
 cp /local/repository/alice.txt ~/
 cp /local/repository/whole_dict.txt ~/
