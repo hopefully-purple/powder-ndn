@@ -84,16 +84,16 @@ def create_routers(instantiateOn='pnode', cores=4, ram=8):
     routers.append(mkVM('router' + str(1), GLOBALS.UBUNTU18_IMG, instantiateOn=instantiateOn, cores=cores, ram=ram))
 
     # run alternating install scripts on each vm to install software
-    odd_router = True
+#    odd_router = True
     for router in routers:
         if router is not None:
-            if odd_router:
-                router.addService(pg.Execute(shell="sh", command="chmod +x /local/repository/install1.sh"))
-                router.addService(pg.Execute(shell="sh", command="/local/repository/install1.sh"))
+            #if odd_router:
+            router.addService(pg.Execute(shell="sh", command="chmod +x /local/repository/install1.sh"))
+            router.addService(pg.Execute(shell="sh", command="/local/repository/install1.sh"))
  #           else:
  #               router.addService(pg.Execute(shell="sh", command="chmod +x /local/repository/install2.sh"))
  #               router.addService(pg.Execute(shell="sh", command="/local/repository/install2.sh"))
-            odd_router = not odd_router
+            #odd_router = not odd_router
 
     return routers
 
