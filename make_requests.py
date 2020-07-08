@@ -5,6 +5,7 @@ from pyndn import Interest
 from pyndn.transport import UdpTransport
 from pyndn.security import KeyChain
 from counter import Counter
+from datetime import datetime
 
 def dump(*list):
     """Prints all parameters"""
@@ -14,6 +15,7 @@ def dump(*list):
         result += (element if type(element) is str else str(element)) + " "
     with open('stats_file.txt', 'a') as output:    
         output.write(f"{result}\n")
+        output.write(f"{datetime.now}")
     
 
 
