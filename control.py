@@ -44,13 +44,11 @@ class Control():
         print("Reading File")
 
         # Open nlsr.conf and read in specified number of words
-        with open('random.txt', 'r') as input_file:
+        with open('alice.txt', 'r') as input_file:
             print("successfully opened file")
             num = 0
             for line in input_file:
                 for word in line.split():
-#                   if "<" in word or ">" in word:
-#                       pass
                     if num < self.total_reqs:
                         num += 1
                         self.list.append(word)
@@ -69,22 +67,15 @@ class Control():
 
         print("Size of Request List: ", len(self.requests))        
 
-       #with open('stats_file.txt', 'a') as output_file:
-       #    for item in self.list:
-       #        request = "/ndn/" + item + "\n"
-       #        output_file.write(request)
-        
         return 0
 
     def send_request(self, request, i):
         """Uses PyNDN to send a single request"""
-       #print("Send a request")
 
         with open('stats_file.txt', 'a') as output_file:
             output_file.write(f"Rep #{i}")
             nl_req = request + "\n"
             output_file.write(nl_req)
-#           print(f"|{request}|")            
        
         make = MakeRequests()
         make.run_reqs(request)

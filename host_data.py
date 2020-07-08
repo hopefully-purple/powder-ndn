@@ -5,21 +5,34 @@ import subprocess
 import random
 
 from datetime import datetime
-from numpy import random
 
-def host(self, requests):
+def read_file(requests):
 	
-#	lines = random_lines('alice.txt')
-	x = random.randint(100)
+	data_list = []
 
 	with open('alice.txt', 'r') as alice:
-		print("Opened and closed alice")
+		num = 0
+		for line in alice:
+			for word in line.split():
+				if num < requests:
+					num += 1
+					data_list.append(word)
+				else:
+					break
 
+	return data_list
 
-#def random_lines(file):
-#	lines = open(file).read().splitlines()
-#	return random.choice(lines)
+def host(data_list):
 
+	for data in data_list:
+		prefix = "/ndn/" + data
+		os.system(f"echo {data} | ndnpoke {prefix} &")
+		with open('nfdc_status.txt', 'a') as status:
+			status.write("----")
+			status.write(f"{prefix}\t {datetime.now()}\n")
+			subprocess.Popen(['nfdc', 'status', 'show'], stdout=status)
+			status.write("-")
+		print(f"done echoing {prefix}\n")
 
 
 def main():
@@ -28,7 +41,8 @@ def main():
 	print("This script will host random data under random prefixes from alice.txt") #will move on to dictionary when ready for hardcore
 
 	#ask for settings
-	requests = input("How many satisfiable requests?:")
+	requests = input("How many satisfiable requests per repitition?:")
+	requests = int(requests)
 
 	#Begin when ready
 	ready = input("Hit enter when ready . . .")
@@ -38,11 +52,12 @@ def main():
 		main()
 	else:
 		with open('nfdc_status.txt', 'w') as status:
-			status.write(f"Beginning status at time: {datetime.now}\n")
-			subprocess = subprocess.Popen(['nfdc', 'status', 'show'], stdout=status)
+			status.write(f"Beginning status at time: {datetime.now()}\n")
+			subprocess.Popen(['nfdc', 'status', 'show'], stdout=status)
+			status.write("---------")
 
 		#call host algorithm
-		host(requests)
+		host(read_file(requests))
 
 
 

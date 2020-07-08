@@ -15,7 +15,7 @@ def dump(*list):
         result += (element if type(element) is str else str(element)) + " "
     with open('stats_file.txt', 'a') as output:    
         output.write(f"{result}\n")
-        output.write(f"{datetime.now}")
+        output.write(f"{datetime.now()}\n")
     
 
 

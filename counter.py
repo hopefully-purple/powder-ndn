@@ -14,8 +14,7 @@ class Counter():
     def onData(self, interest, data):
         self._callbackCount += 1
         dump("Got data packet with name", data.getName().toUri())
-        dump(data.getContent().toRawStr())
-
+        dump(data.getContent().toRawStr(), data.getDefaultWireEncoding())
 
     def onTimeout(self, interest):
         self._callbackCount += 1
@@ -35,4 +34,4 @@ def dump(*list):
         result += (element if type(element) is str else str(element)) + " "
     with open('stats_file.txt', 'a') as output:    
         output.write(f"{result}\n")
-
+#       output.write("I'M HERE\n")

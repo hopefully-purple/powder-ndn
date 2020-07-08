@@ -1,0 +1,63 @@
+A clean slate!
+Requests per Rep: 10	 Total Reps: 1
+CONTROL CASE
+Rep #0/ndn/Alice
+Express name /ndn/Alice 
+2020-07-08 16:12:12.237235
+Got data packet with name /ndn/Alice 
+Alice
+ 
+Rep #0/ndn/was
+Express name /ndn/was 
+2020-07-08 16:12:12.258654
+Got data packet with name /ndn/was 
+was
+ 
+Rep #0/ndn/beginning
+Express name /ndn/beginning 
+2020-07-08 16:12:12.279760
+Got data packet with name /ndn/beginning 
+beginning
+ 
+Rep #0/ndn/to
+Express name /ndn/to 
+2020-07-08 16:12:12.301130
+Got data packet with name /ndn/to 
+to
+ 
+Rep #0/ndn/get
+Express name /ndn/get 
+2020-07-08 16:12:12.322692
+Got data packet with name /ndn/get 
+get
+ 
+Rep #0/ndn/very
+Express name /ndn/very 
+2020-07-08 16:12:12.343828
+Got data packet with name /ndn/very 
+very
+ 
+Rep #0/ndn/tired
+Express name /ndn/tired 
+2020-07-08 16:12:12.365182
+Got data packet with name /ndn/tired 
+tired
+ 
+Rep #0/ndn/of
+Express name /ndn/of 
+2020-07-08 16:12:12.386535
+Got data packet with name /ndn/of 
+of
+ 
+Rep #0/ndn/sitting
+Express name /ndn/sitting 
+2020-07-08 16:12:12.407920
+Got data packet with name /ndn/sitting 
+sitting
+ 
+Rep #0/ndn/by
+Express name /ndn/by 
+2020-07-08 16:12:12.429031
+Got data packet with name /ndn/by 
+by
+ 
