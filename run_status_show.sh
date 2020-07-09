@@ -6,21 +6,21 @@
 
 #Default will be every 30 seconds for 5 minutes.
 
-echo "Wipe timed_nfdc_status.txt?(y/n)"
-read wipe
+#echo "Wipe timed_nfdc_status.txt?(y/n)"
+#read wipe
 
-if [ "$wipe" == "y" ]; then
-	echo "This is the show status output for a unrelated timer, to be run during experiments." > timed_nfdc_status.txt
-elif [ "$wipe" == "n" ]; then
-	echo -e "ANOTHER RUN\n" >> timed_nfdc_status.txt
-fi
+#if [ "$wipe" == "y" ]; then
+echo "This is the show status output for a unrelated timer, to be run during experiments." > timed_nfdc_status.txt
+#elif [ "$wipe" == "n" ]; then
+#	echo -e "ANOTHER RUN\n" >> timed_nfdc_status.txt
+#fi
 
-echo "Default: every 60 seconds for 10 minutes" >> timed_nfdc_status.txt
+echo "Default: every 10 seconds for 1 minutes" >> timed_nfdc_status.txt
 
 #read choice
 
-interval=60
-duration=10
+interval=10
+duration=1
 
 #if [[ $choice == "n" ]]; then
 #	echo "How often?"
@@ -50,4 +50,4 @@ do
 	sleep $interval
 done
 
-echo "Finsihed"
+echo "Finished"
