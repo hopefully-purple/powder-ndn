@@ -28,11 +28,9 @@ def host(data_list):
 		prefix = "/ndn/" + data
 		os.system(f"echo {data} | ndnpoke {prefix} &")
 		with open('nfdc_status.txt', 'a') as status:
-			status.write("----")
+			os.system(f"echo {data} | ndnpoke {prefix} &")
 			status.write(f"{prefix}\t {datetime.now()}\n")
-			subprocess.Popen(['nfdc', 'status', 'show'], stdout=status)
-			status.write("-")
-		print(f"done echoing {prefix}\n")
+#			subprocess.Popen(['nfdc', 'status', 'show'], stdout=status)
 
 
 def main():
@@ -51,14 +49,11 @@ def main():
 		print("Restarting")
 		main()
 	else:
-		with open('nfdc_status.txt', 'w') as status:
-			status.write(f"Beginning status at time: {datetime.now()}\n")
-			subprocess.Popen(['nfdc', 'status', 'show'], stdout=status)
-			status.write("---------")
-
+		os.system("./run_status_show.sh &")
+		print("Just called run")
 		#call host algorithm
 		host(read_file(requests))
-
+		print("DONE")
 
 
 main()
