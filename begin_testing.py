@@ -7,28 +7,24 @@ def questions(ctrl):
 
     # String that stores whether the user wants the control case or the victim case
     control_or_victim = input("Control Case or Victim?(c/v): ")
-    # String that stores whether the user wants to adjust the settings or not.
-    adjust_settings = input("Adjust settings?(y/n): ")
 
-    if adjust_settings == "y" and control_or_victim == "c":
-        num_reqs = input(f"Total Number of Requests per Repetition = {ctrl.total_reqs} : ")
-        if num_reqs != "":
-            ctrl.total_reqs = int(num_reqs) 
-        num_reps = input(f"Number of Repetitions = {ctrl.reps} : ")
-        if num_reps != "":
-            ctrl.reps = int(num_reps)    
-        wipe = input("Wipe stats_file?(y/n):")
+    num_reqs = input(f"Total Number of Requests per Repetition = {ctrl.total_reqs} : ")
+    if num_reqs != "":
+        ctrl.total_reqs = int(num_reqs) 
+    num_reps = input(f"Number of Repetitions = {ctrl.reps} : ")
+    if num_reps != "":
+        ctrl.reps = int(num_reps)    
+    
+    wipe = input("Wipe stats_file?(y/n):")
         
-        if wipe == "y":
-            with open('stats_file.txt', 'w') as stats:
-                stats.write("A clean slate!\n") #Eventually print out the settings
-                stats.write(f"Requests per Rep: {ctrl.total_reqs}\t Total Reps: {ctrl.reps}\n")
-                stats.write("CONTROL CASE\n")
-        elif wipe == "n":
-            with open('stats_file.txt', 'a') as stats:
-                stats.write("\n ANOTHER RUN\n")
-    elif adjust_settings == "n":
-        print("Ok.")    
+    if wipe == "y":
+        with open('stats_file.txt', 'w') as stats:
+            stats.write("A clean slate!\n") #Eventually print out the settings
+            stats.write(f"Requests per Rep: {ctrl.total_reqs}\t Total Reps: {ctrl.reps}\n")
+            stats.write("CONTROL CASE\n")
+    elif wipe == "n":
+        with open('stats_file.txt', 'a') as stats:
+            stats.write("\n ANOTHER RUN\n")
     
     ready = input("Hit enter when ready . . .")
     
