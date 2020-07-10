@@ -15,7 +15,6 @@ def dump(*list):
         result += (element if type(element) is str else str(element)) + " "
     with open('stats_file.txt', 'a') as output:    
         output.write(f"{result}\n")
-        output.write(f"{datetime.now()}\n")
     
 
 
@@ -47,6 +46,7 @@ class MakeRequests():
         # face.expressInterest(name, counter.onData, counter.onTimeout, counter.onNetworkNack)
         interest = Interest(name)
         interest.setMustBeFresh(False)
+        dump(f">>{datetime.now()}>>")
         face.expressInterest(interest, counter.onData, counter.onTimeout, counter.onNetworkNack)
         
         # try to fetch anything
