@@ -15,11 +15,13 @@ echo "This is the show status output for a unrelated timer, to be run during exp
 #	echo -e "ANOTHER RUN\n" >> timed_nfdc_status.txt
 #fi
 
-echo "Default: every 10 seconds for 1 minutes" >> timed_nfdc_status.txt
+#echo "Default: every 60 seconds for 10 minutes" >> timed_nfdc_status.txt
+echo "Custom: every 1 seconds for 1 minutes" >> timed_nfdc_status.txt
+
 
 #read choice
 
-interval=10
+interval=1
 duration=1
 
 #if [[ $choice == "n" ]]; then
@@ -38,7 +40,8 @@ START=1
 END=$iterations
 
 echo "Now beginning . . . ."
-
+echo "Will end in $duration minutes at:"
+date --date="+$totalseconds seconds" +"%Y-%m-%d %H:%M:%S"
 #echo "Before timing loop" >> timed_nfdc_status.txt
 
 #nfdc status show >> timed_nfdc_status.txt
