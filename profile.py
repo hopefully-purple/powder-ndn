@@ -61,8 +61,8 @@ def create_nodes(count=2, prefix=1, instantiateOn='pnode', cores=2, ram=4):
     # run install scripts on each vm to install software
     for node in nodes:
         if node is not None:
-            node.addService(pg.Execute(shell="sh", command="chmod +x /local/repository/install1.sh"))
-            node.addService(pg.Execute(shell="sh", command="/local/repository/install1.sh"))
+#           node.addService(pg.Execute(shell="sh", command="chmod +x /local/repository/install1.sh"))
+#           node.addService(pg.Execute(shell="sh", command="/local/repository/install1.sh"))
             node.addService(pg.Execute(shell="sh", command="chmod +x /local/repository/install_ndn_client.sh"))
             node.addService(pg.Execute(shell="sh", command="/local/repository/install_ndn_client.sh"))
 
