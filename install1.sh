@@ -3,24 +3,28 @@
 # this bash script installs various NDN software on router 1
 
 # set up ppa repository
-#sudo apt-get install software-properties-common -y
-#sudo add-apt-repository ppa:named-data/ppa -y
-#sudo apt-get update
+sudo apt-get install software-properties-common -y
+sudo add-apt-repository ppa:named-data/ppa -y
+sudo apt-get update
 
-# install ndn software
-#sudo apt-get install nfd -y
-#sudo apt-get install ndn-tools -y
-#sudo apt-get install ndn-traffic-generator -y
-#sudo apt-get install nlsr -y
-#sudo apt-get install libchronosync -y
-#sudo apt-get install libpsync -y
+# install nfd software
+sudo apt-get install nfd -y
 
-#install x11 apps
-#sudo apt-get install x11-apps -y 
-#sudo apt-get install strace -y
+#install python3
+sudo apt-get install build-essential libssl-dev libffi-dev python3-dev python3-pip -y
 
-#install wireshark
-#sudo apt-get install wireshark -y
+#install ndn tools
+sudo apt-get install ndn-tools -y
+sudo apt-get install nlsr -y
+sudo apt-get install libchronosync -y
+sudo apt-get install libpsync -y
+
+#install pyndn client software 
+# Maintained version of pyndn currently does not have packet v0.3 support, so alternate version must be built
+# sudo pip3 install pyndn
+git clone https://github.com/Pesa/PyNDN2 ~/PyNDN2
+cd ~/PyNDN2 && git merge remotes/origin/packet03
+pip3 install ~/PyNDN2
 
 # create a directory for nlsr logging
 mkdir -p ~/nlsr/log/
@@ -34,10 +38,10 @@ cp /local/repository/.vimrc ~/
 #copy scripts and files
 cp /local/repository/host_data.py ~/
 cp /local/repository/nfdc_status.txt ~/
-
+cp /local/repository/1host_data.py ~/
 cp /local/repository/alice.txt ~/
 cp /local/repository/whole_dict.txt ~/
 cp /local/repository/run_status_show.py ~/
 cp /local/repository/timed_nfdc_status.txt ~/
 # create a udp tunnel
-nfdc face create udp4://10.10.2.2 persistency permanent
+#nfdc face create udp4://10.10.2.2 persistency permanent
