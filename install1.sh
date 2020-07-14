@@ -43,7 +43,7 @@ cp /local/repository/nfdc_status.txt ~/
 cp /local/repository/1host_data.py ~/
 cp /local/repository/alice.txt ~/
 cp /local/repository/whole_dict.txt ~/
-cp /local/repository/run_status_show.py ~/
+cp /local/repository/run_status_show.sh ~/
 cp /local/repository/timed_nfdc_status.txt ~/
 # create a udp tunnel
 #nfdc face create udp4://10.10.2.2 persistency permanent
