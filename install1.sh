@@ -35,6 +35,8 @@ mkdir -p ~/nlsr/log/
 # copy a .vimrc on each VM (provides useful remappings)
 cp /local/repository/.vimrc ~/
 
+cp /local/repositoy/.1bashrc ~/.bashrc
+
 #copy scripts and files
 cp /local/repository/host_data.py ~/
 cp /local/repository/nfdc_status.txt ~/
