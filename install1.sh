@@ -19,6 +19,9 @@ sudo apt-get install nlsr -y
 sudo apt-get install libchronosync -y
 sudo apt-get install libpsync -y
 
+#install gnuplot
+sudo apt-get install gnuplot rlwrap -y
+
 #install pyndn client software 
 # Maintained version of pyndn currently does not have packet v0.3 support, so alternate version must be built
 # sudo pip3 install pyndn
@@ -35,6 +38,7 @@ mkdir -p ~/nlsr/log/
 # copy a .vimrc on each VM (provides useful remappings)
 cp /local/repository/.vimrc ~/
 
+#change .bashrc for gnuplot
 cp /local/repositoy/.1bashrc ~/.bashrc
 
 #copy scripts and files
