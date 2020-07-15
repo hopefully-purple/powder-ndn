@@ -6,6 +6,7 @@ sudo apt-get install build-essential libssl-dev libffi-dev python3-dev python3-p
 
 #install gnuplot
 sudo apt-get install gnuplot rlwrap -y
+sudo apt-get install imagemagick -y
 
 # Maintained version of pyndn currently does not have packet v0.3 support, so alternate version must be built
 git clone https://github.com/Pesa/PyNDN2 ~/PyNDN2

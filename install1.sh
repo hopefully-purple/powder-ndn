@@ -21,6 +21,7 @@ sudo apt-get install libpsync -y
 
 #install gnuplot
 sudo apt-get install gnuplot rlwrap -y
+sudo apt-get install imagemagick -y
 
 #install pyndn client software 
 # Maintained version of pyndn currently does not have packet v0.3 support, so alternate version must be built
