@@ -4,6 +4,9 @@
 sudo apt-get update
 sudo apt-get install build-essential libssl-dev libffi-dev python3-dev python3-pip -y
 
+#install gnuplot
+sudo apt-get install gnuplot rlwrap -y
+
 # Maintained version of pyndn currently does not have packet v0.3 support, so alternate version must be built
 git clone https://github.com/Pesa/PyNDN2 ~/PyNDN2
 cd ~/PyNDN2 && git merge remotes/origin/packet03
@@ -14,6 +17,9 @@ cp /local/repository/request_data.py ~/
 
 # copy the testing code to the user's home directory
 cp /local/repository/begin_testing.py ~/
+
+#copy modified bashrc 
+cp /local/repository/.1bashrc ~/.bashrc
 
 # copy the stats file to the user's home directory
 cp /local/repository/stats_file.txt ~/
