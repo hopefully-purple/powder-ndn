@@ -27,7 +27,6 @@
 
 import math
 import time
-#from pyndn import Name
 from make_requests import MakeRequests
 
 
@@ -69,11 +68,12 @@ class Control():
 
         return 0
 
-    def send_request(self, request, i):
+    def send_request(self, request, i, req_num):
         """Uses PyNDN to send a single request"""
 
+        i += 1
         with open('stats_file.txt', 'a') as output_file:
-            output_file.write(f"Rep #{i}")
+            output_file.write(f"Rep #{i} Req #{req_num} ")
             nl_req = request + "\n"
             output_file.write(nl_req)
        
@@ -90,12 +90,19 @@ class Control():
         # Generate requests with list of strings
         self.generate_request_strings()
 
+        #Give host script a chance
+        time.sleep(1)
+        
+        req_num = 0
+
         # Loop for the number of repetitions
         print("Sending requests")
         for i in range(0, self.reps):
             print(f"Repition #{i}\n")
             # Send specified number of requests
             for request in self.requests:
-                self.send_request(request, i)
+                req_num += 1
+                self.send_request(request, i, req_num)
+            req_num = 0
 
 
