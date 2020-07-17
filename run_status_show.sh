@@ -22,7 +22,7 @@ echo "Will end in $duration minutes at:"
 date --date="+$totalseconds seconds" +"%Y-%m-%d %H:%M:%S"
 
 #echo "CurrentTime\tFib\tPit\tMeasurements\tCs\tInInterests\tOutInterests\tInData\tOutData\tInNacks\tOutNacks\tSatisfiedInterests\tUnsatisfiedInterests\n" > timed_data.dat
-echo "" > timed_data.dat
+echo "# Data file for nfdc stats\n" > timed_data.dat
 echo "" > temp0_timed_data.dat
 echo "" > temp1_timed_data.dat
 echo "" > temp2_timed_data.dat
@@ -50,7 +50,7 @@ echo "Finished timing"
 awk '{ print $3, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18 > "temp3_timed_data.dat"}' temp2_timed_data.dat
 #Get rid of unwanted date number on current time
 cat temp3_timed_data.dat | cut -c 12- > temp0_timed_data.dat
-#Put in timed_data under labels
+#Put in timed_data under the correct file
 cat temp0_timed_data.dat >> timed_data.dat
 
 #clean up directory
