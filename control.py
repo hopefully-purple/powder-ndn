@@ -122,8 +122,8 @@ class Control():
         make = MakeRequests()
 
         for i in range(0, self.reps):
-            for i in range(0, self.requests):
-                randstring = generate_random(9)
+            for i in range(0, self.total_reqs):
+                randstring = self.generate_random(9)
                 make.run_reqs(randstring)
 
 
