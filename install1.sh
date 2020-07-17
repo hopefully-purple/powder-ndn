@@ -44,7 +44,7 @@ cp /local/repositoy/.1bashrc ~/.bashrc
 
 #copy scripts and files
 cp /local/repository/host_data.py ~/
-cp /local/repository/nfdc_status.txt ~/
+cp /local/repository/echo_times.txt ~/
 cp /local/repository/1host_data.py ~/
 cp /local/repository/alice.txt ~/
 cp /local/repository/whole_dict.txt ~/
