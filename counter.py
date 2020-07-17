@@ -12,18 +12,24 @@ class Counter():
         self._callbackCount = 0
     
     def onData(self, interest, data):
+        time = datetime.now()
         self._callbackCount += 1
         dump("Got data packet with name", data.getName().toUri())
-        dump(data.getContent().toRawStr(), data.getDefaultWireEncoding())
+        dump(f"<<{time}<<\n", data.getContent().toRawStr()) 
+        
 
     def onTimeout(self, interest):
+        time = datetime.now()
         self._callbackCount += 1
         dump("Time out for interest", interest.getName().toUri())
+        dump(f"<<{time}\n")
 
 
     def onNetworkNack(self, interest, networkNack):
+        time = datetime.now()
         self._callbackCount += 1
         dump("Network nack for interest", interest.getName().toUri())
+        dump(f"<<{time}<<\n")
 
 
 def dump(*list):
