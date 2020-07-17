@@ -3,7 +3,7 @@
 import os
 import subprocess
 import random
-
+import time
 from datetime import datetime
 
 def read_file(requests):
@@ -24,13 +24,15 @@ def read_file(requests):
 
 def host(data_list):
 
+	os.system("echo "" > echo_times.txt")
+
 	for data in data_list:
 		prefix = "/ndn/" + data
 		os.system(f"echo {data} | ndnpoke {prefix} &")
-		with open('nfdc_status.txt', 'a') as status:
-			os.system(f"echo {data} | ndnpoke {prefix} &")
-			status.write(f"{prefix}\t {datetime.now()}\n")
-#			subprocess.Popen(['nfdc', 'status', 'show'], stdout=status)
+		time = datetime.now()
+		with open('echo_times.txt', 'a') as times:
+			#os.system(f"echo {data} | ndnpoke {prefix} &")
+			times.write(f"{prefix}\t {time}\n")
 
 
 def main():
@@ -42,18 +44,28 @@ def main():
 	requests = input("How many satisfiable requests per repitition?:")
 	requests = int(requests)
 
+	#Prep list
+	req_list = read_file(requests)
+
 	#Begin when ready
 	ready = input("Hit enter when ready . . .")
 
-	if ready != "":
-		print("Restarting")
-		main()
-	else:
-		os.system("./run_status_show.sh &")
-		print("Just called run")
-		#call host algorithm
-		host(read_file(requests))
-		print("DONE")
+	print("On 10, start requesting")
+	#Begin timer
+	for number in range(1,10):
+		if number != 10:
+			print(f"{number}")
+			time.sleep(1)
+		else:
+			print("GO!\n")
+	#Start the test
+	os.system("./run_status_show.sh &")
+	print("Just called run")
+		
+	#call host algorithm
+	host(req_list)
+	time.sleep(61)
+	print("DONE")
 
 
 main()
