@@ -8,6 +8,10 @@ def questions(ctrl):
     # String that stores whether the user wants the control case or the victim case
     control_or_victim = input("Control Case or Victim?(c/v): ")
 
+    if control_or_victim == "v":
+        victim()
+        return control_or_victim
+
     num_reqs = input(f"Total Number of Requests per Repetition = {ctrl.total_reqs} : ")
     if num_reqs != "":
         ctrl.total_reqs = int(num_reqs) 
@@ -25,7 +29,8 @@ def questions(ctrl):
     elif wipe == "n":
         with open('stats_file.txt', 'a') as stats:
             stats.write("\n ANOTHER RUN\n")
-    
+            stats.write(f"Requests per Rep: {ctrl.total_reqs}\t Total Reps: {ctrl.reps}\n")
+            
     ready = input("Hit enter when ready . . .")
     
     if ready == "":
@@ -34,6 +39,10 @@ def questions(ctrl):
         return "a"
     
     #return control_or_victim
+
+def victim():
+    print("GACK")
+
 
 
 def main():
@@ -54,9 +63,13 @@ def main():
     elif case == "a":
         main()
 
-    again = input("Run again?(y/n):")
+    again = input("Run again?(y/ys/n):")
     if again == "y":
         main()
+    elif again == "ys":
+        questions(ctrl)
+        ctrl.test()
+        print("Done!")
     elif again == "n":
         print("Peace out")
 
