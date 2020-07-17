@@ -27,6 +27,9 @@
 
 import math
 import time
+import re
+import random
+import string
 from make_requests import MakeRequests
 
 
@@ -82,6 +85,15 @@ class Control():
 
         return 0
 
+    def generate_random(self, length):
+        """Creates a random string"""
+
+        letters = string.ascii_letters
+        result_str = ''.join(random.choice(letters) for i in range(length))
+
+        return result_str
+
+
     def test(self):
         """ Send requests, and repeat it accordingly"""
         # Read the given(?) file
@@ -104,5 +116,20 @@ class Control():
                 req_num += 1
                 self.send_request(request, i, req_num)
             req_num = 0
+
+    def attack(self):
+        """ ATTACK """
+        make = MakeRequests()
+
+        for i in range(0, self.reps):
+            for i in range(0, self.requests):
+                randstring = generate_random(9)
+                make.run_reqs(randstring)
+
+
+        
+
+
+
 
 

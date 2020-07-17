@@ -6,10 +6,12 @@ def questions(ctrl):
     """ Function that asks the user questions about the setup for the test"""
 
     # String that stores whether the user wants the control case or the victim case
-    control_or_victim = input("Control Case or Victim?(c/v): ")
+    control_or_victim = input("Control Case or Victim or Attacker?(c/v/a): ")
 
     if control_or_victim == "v":
         victim()
+        return control_or_victim
+    if control_or_victim == "a":
         return control_or_victim
 
     num_reqs = input(f"Total Number of Requests per Repetition = {ctrl.total_reqs} : ")
@@ -36,14 +38,18 @@ def questions(ctrl):
     if ready == "":
         return control_or_victim
     else:
-        return "a"
+        return "empty"
     
     #return control_or_victim
 
 def victim():
     print("GACK")
 
+def attacker(ctrl):
+    print("Beginning attack protocol.")
 
+    ctrl.attack()
+    print("Attack Complete")
 
 def main():
     
@@ -61,7 +67,7 @@ def main():
     elif case == "v":
         print("That poor poor victim")
     elif case == "a":
-        main()
+        attacker(ctrl)
 
     again = input("Run again?(y/ys/n):")
     if again == "y":
