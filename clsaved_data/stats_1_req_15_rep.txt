@@ -1,0 +1,108 @@
+A clean slate!
+Requests per Rep: 1	 Total Reps: 15
+CONTROL CASE
+Rep #1 Req #1 /ndn/a
+Express name /ndn/a 
+>>2020-07-21 11:57:42.317266>> 
+Got data packet with name /ndn/a 
+<<2020-07-21 11:57:42.328639<<
+ a
+ 
+Rep #2 Req #1 /ndn/a
+Express name /ndn/a 
+>>2020-07-21 11:57:42.339564>> 
+Got data packet with name /ndn/a 
+<<2020-07-21 11:57:42.350578<<
+ a
+ 
+Rep #3 Req #1 /ndn/a
+Express name /ndn/a 
+>>2020-07-21 11:57:42.361342>> 
+Got data packet with name /ndn/a 
+<<2020-07-21 11:57:42.372131<<
+ a
+ 
+Rep #4 Req #1 /ndn/a
+Express name /ndn/a 
+>>2020-07-21 11:57:42.382978>> 
+Got data packet with name /ndn/a 
+<<2020-07-21 11:57:42.393785<<
+ a
+ 
+Rep #5 Req #1 /ndn/a
+Express name /ndn/a 
+>>2020-07-21 11:57:42.404511>> 
+Got data packet with name /ndn/a 
+<<2020-07-21 11:57:42.415292<<
+ a
+ 
+Rep #6 Req #1 /ndn/a
+Express name /ndn/a 
+>>2020-07-21 11:57:42.425952>> 
+Got data packet with name /ndn/a 
+<<2020-07-21 11:57:42.436891<<
+ a
+ 
+Rep #7 Req #1 /ndn/a
+Express name /ndn/a 
+>>2020-07-21 11:57:42.447647>> 
+Got data packet with name /ndn/a 
+<<2020-07-21 11:57:42.458562<<
+ a
+ 
+Rep #8 Req #1 /ndn/a
+Express name /ndn/a 
+>>2020-07-21 11:57:42.469330>> 
+Got data packet with name /ndn/a 
+<<2020-07-21 11:57:42.480049<<
+ a
+ 
+Rep #9 Req #1 /ndn/a
+Express name /ndn/a 
+>>2020-07-21 11:57:42.490907>> 
+Got data packet with name /ndn/a 
+<<2020-07-21 11:57:42.501733<<
+ a
+ 
+Rep #10 Req #1 /ndn/a
+Express name /ndn/a 
+>>2020-07-21 11:57:42.512691>> 
+Got data packet with name /ndn/a 
+<<2020-07-21 11:57:42.523450<<
+ a
+ 
+Rep #11 Req #1 /ndn/a
+Express name /ndn/a 
+>>2020-07-21 11:57:42.534315>> 
+Got data packet with name /ndn/a 
+<<2020-07-21 11:57:42.545104<<
+ a
+ 
+Rep #12 Req #1 /ndn/a
+Express name /ndn/a 
+>>2020-07-21 11:57:42.555926>> 
+Got data packet with name /ndn/a 
+<<2020-07-21 11:57:42.566778<<
+ a
+ 
+Rep #13 Req #1 /ndn/a
+Express name /ndn/a 
+>>2020-07-21 11:57:42.577536>> 
+Got data packet with name /ndn/a 
+<<2020-07-21 11:57:42.588321<<
+ a
+ 
+Rep #14 Req #1 /ndn/a
+Express name /ndn/a 
+>>2020-07-21 11:57:42.598984>> 
+Got data packet with name /ndn/a 
+<<2020-07-21 11:57:42.609581<<
+ a
+ 
+Rep #15 Req #1 /ndn/a
+Express name /ndn/a 
+>>2020-07-21 11:57:42.620464>> 
+Got data packet with name /ndn/a 
+<<2020-07-21 11:57:42.631385<<
+ a
+ 
