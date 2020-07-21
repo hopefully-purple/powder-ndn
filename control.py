@@ -32,7 +32,7 @@ import random
 import os
 import string
 from make_requests import MakeRequests
-
+from datetime import datetime
 
 class Control():
     """This class holds settings and algorithms for the Control Case"""
@@ -115,7 +115,7 @@ class Control():
         # Loop for the number of repetitions
         print("Sending requests")
         for i in range(0, self.reps):
-            print(f"Repition #{i + 1}\n")
+            print(f"Repetition #{i + 1} {datetime.now()}\n")
             # Send specified number of requests
             for request in self.requests:
                 req_num += 1
