@@ -41,8 +41,10 @@ def main():
 	print("This script will host random data under random prefixes from whole_dict.txt") #will move on to dictionary when ready for hardcore
 
 	#ask for settings
-	requests = input("How many satisfiable requests per repitition?: ")
+	requests = input("How many satisfiable requests per repetition?: ")
 	requests = int(requests)
+	repetitions = input("How many repetitions?: ")
+	repetitions = int(repetitions)
 
 	#Prep list
 	req_list = read_file(requests)
