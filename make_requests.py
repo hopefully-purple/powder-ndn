@@ -1,4 +1,5 @@
 import time
+import os
 from pyndn import Name
 from pyndn import Face
 from pyndn import Interest
@@ -42,9 +43,12 @@ class MakeRequests():
 
         interest = Interest(name)
         interest.setMustBeFresh(False)
-        dump(f">>{datetime.now()}>>")
+        date = datetime.now()
         face.expressInterest(interest, counter.onData, counter.onTimeout, counter.onNetworkNack)
-        
+        dump(f">>{date}>>")
+
+        with open('out.dat', 'a') as outfile:
+            outfile.write(f"{date}\n")
 
         while counter._callbackCount < 1:
             face.processEvents()

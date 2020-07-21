@@ -10,7 +10,7 @@ def read_file(requests):
 	
 	data_list = []
 
-	with open('alice.txt', 'r') as alice:
+	with open('whole_dict.txt', 'r') as alice:
 		num = 0
 		for line in alice:
 			for word in line.split():
@@ -38,10 +38,10 @@ def host(data_list):
 def main():
 	
 	#clarify what files are being used for what.
-	print("This script will host random data under random prefixes from alice.txt") #will move on to dictionary when ready for hardcore
+	print("This script will host random data under random prefixes from whole_dict.txt") #will move on to dictionary when ready for hardcore
 
 	#ask for settings
-	requests = input("How many satisfiable requests per repitition?:")
+	requests = input("How many satisfiable requests per repitition?: ")
 	requests = int(requests)
 
 	#Prep list

@@ -63,7 +63,7 @@ rm temp_nfdc_status.txt
 
 #make plot and table
 gnuplot -persist -c "analyze_data.gnuplot" "$interval seconds for $duration minutes"
-display plot_timed_data.png &
+display plot_timed_data.png 
 
 echo "Finished"
 
