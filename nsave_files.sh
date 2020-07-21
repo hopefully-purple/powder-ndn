@@ -7,14 +7,19 @@
 #outin.dat
 
 #Take in name arguments
-EXPNAME=ARG1
+#EXPNAME=$1
 
 #Check if saved_data directory exists
-DIR="/clsaved_data/"
-if [ -d "$DIR" ]; then
-	echo "Moving files"
-else
-	#Make the directory
-	mkdir /clsaved_data/
+DIR="/users/hopew/clsaved_data/"
 
+[ ! -d "$DIR" ] && sudo mkdir -p "$DIR"
+
+cp plot_outin_data.png plot_"$1".png
+sudo mv plot_"$1".png $DIR 
+
+cp stats_file.txt stats_"$1".txt
+sudo mv stats_"$1".txt $DIR
+
+cp outin.dat outin_"$1".txt
+sudo mv outin_"$1".txt $DIR
 
