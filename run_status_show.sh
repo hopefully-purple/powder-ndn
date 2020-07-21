@@ -5,8 +5,8 @@
 #User must specify the lengths.
 
 #Default will be every 30 seconds for 5 minutes.
-interval=30
-duration=30
+interval=10
+duration=5
 
 echo "This is the show status output for a unrelated timer, to be run during experiments." > timed_nfdc_status.txt
 echo "Every $interval seconds for $duration minutes" >> timed_nfdc_status.txt
@@ -48,8 +48,8 @@ echo "Finished timing"
 #Edit timed data
 #Remove version, startimte, and uptime columns
 awk '{ print $3, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18 > "temp3_timed_data.dat"}' temp2_timed_data.dat
-#Get rid of unwanted date number on current time
-cat temp3_timed_data.dat | cut -c 17- > temp0_timed_data.dat
+#Get rid of unwanted date number on current time 12 includes mniutes?, 17 is just milliseconds
+cat temp3_timed_data.dat | cut -c 12- > temp0_timed_data.dat
 #Put in timed_data under the correct file
 cat temp0_timed_data.dat >> timed_data.dat
 

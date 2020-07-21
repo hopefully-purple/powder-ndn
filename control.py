@@ -126,10 +126,11 @@ class Control():
         """ ATTACK """
         make = MakeRequests()
 
-        for i in range(0, self.reps):
-            for i in range(0, self.total_reqs):
-                randstring = self.generate_random(9)
-                make.run_reqs(randstring)
+        self.total_reqs = 5000
+
+        for i in range(0, self.total_reqs):
+            randstring = self.generate_random(15)
+            make.run_reqs(randstring)
 
 
         
