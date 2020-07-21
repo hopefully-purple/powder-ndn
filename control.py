@@ -29,6 +29,7 @@ import math
 import time
 import re
 import random
+import os
 import string
 from make_requests import MakeRequests
 
@@ -46,7 +47,7 @@ class Control():
         print("Reading File")
 
         # Open nlsr.conf and read in specified number of words
-        with open('alice.txt', 'r') as input_file:
+        with open('whole_dict.txt', 'r') as input_file:
             print("successfully opened file")
             num = 0
             for line in input_file:
@@ -56,12 +57,10 @@ class Control():
                         self.list.append(word)
                     else:
                         break
-        print("Populated list")
         return 0
 
     def generate_request_strings(self):
         """Takes the list of words and adds the prefix to them"""
-        print("Generating requests")
 
         for item in self.list:
             request = "/ndn/" + item
@@ -102,6 +101,12 @@ class Control():
         # Generate requests with list of strings
         self.generate_request_strings()
 
+        #Create new in.dat and out.dat file
+        with open('in.dat', 'w') as infile:
+            pass
+        with open('out.dat', 'w') as outfile:
+            pass
+
         #Give host script a chance
         time.sleep(1)
         
@@ -110,7 +115,7 @@ class Control():
         # Loop for the number of repetitions
         print("Sending requests")
         for i in range(0, self.reps):
-            print(f"Repition #{i}\n")
+            print(f"Repition #{i + 1}\n")
             # Send specified number of requests
             for request in self.requests:
                 req_num += 1
