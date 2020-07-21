@@ -27,11 +27,11 @@ cp /local/repository/stats_file.txt ~/
 
 # copy the control file to the user's home directory
 cp /local/repository/control.py ~/
-
+cp /local/repository/nsave_files.sh ~/
 cp /local/repository/counter.py ~/
 
 cp /local/repository/make_requests.py ~/
-
+cp /local/repository/analyze_outin.gnuplot ~/
 # copy the two .txt files into the user's home directory
 cp /local/repository/alice.txt ~/
 cp /local/repository/whole_dict.txt ~/
