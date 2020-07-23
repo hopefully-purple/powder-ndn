@@ -2,17 +2,23 @@ import math
 import os
 import time
 from control import Control
+from datetime import datetime
 
 def questions(ctrl):
     """ Function that asks the user questions about the setup for the test"""
 
     # String that stores whether the user wants the control case or the victim case
-    control_or_victim = input("Control Case or Victim or Attacker?(c/v/a): ")
+    control_or_victim = input("Control Case or Victim or Attacker?(c/v/a/p): ")
 
     if control_or_victim == "v":
         victim()
         return control_or_victim
-    if control_or_victim == "a":
+    elif control_or_victim == "a":
+        return control_or_victim
+    elif control_or_victim == "p":
+        requs = input("requests = ")
+        repets = input("repetitions = ")
+        plot(requs, repets)
         return control_or_victim
 
     num_reqs = input(f"Total Number of Requests per Repetition = {ctrl.total_reqs} : ")
@@ -47,8 +53,9 @@ def victim():
     print("GACK")
 
 def attacker(ctrl):
+    print("Attack protocol will populate the same files as a regular use case.")
     print("Beginning attack protocol.")
-
+    print(datetime.now())
     ctrl.attack()
     print("Attack Complete")
 
@@ -79,20 +86,33 @@ def plot(reqs, reps):
             result = int(data[0]) - int(data[1])
             results.append(result)
 
-    #put results list in a temp file
-    with open('results.dat', 'w') as temp:
+    with open('temp_results.dat', 'w') as temp:
         for number in results:
             temp.write(f"{number}\n")
 
+    #put results list in a temp file
+    with open('results.dat', 'w') as temp:
+        i = 0 #Keeps track of line number
+        j = 1 #Keeps track of repetitions
+        temp.write(f"Repetition #{j}\n")
+        for number in results:
+            i+= 1
+            temp.write(f"{number}\n")
+            if i == reqs and j != reps:
+                j += 1
+                temp.write("\n\n")#Skip two lines and reset i
+                temp.write(f"Repetition #{j}\n")
+                i = 0
+
     #add the column to the outin.dat
-    os.system("paste temp_outin.dat results.dat | awk '{$4=\"\"; print > \"outin.dat\"}'")
+    os.system("paste temp_outin.dat temp_results.dat | awk '{$4=\"\"; print > \"outin.dat\"}'")
 
     #Call gnuplot script
-    os.system(f"gnuplot -persist -c \"analyze_outin.gnuplot\" \"{reqs} requests per {reps} repetitions\" \"{reqs * reps}\"")
+    os.system(f"gnuplot -persist -c \"analyze_outin.gnuplot\" \"{reqs} per rep; {reps} repetitions\" \"{reqs}\"")
     os.system("display plot_outin_data.png")
 
     #Clean up extra files
-    os.system("rm temp_in.dat temp_out.dat temp_outin.dat")
+    os.system("rm temp_in.dat temp_out.dat temp_results.dat temp_outin.dat")
 
 def main():
     
@@ -106,7 +126,7 @@ def main():
         #ctrl = Control(100, 15) #gack this could pose a problem!
         print("Call control algorithm")
         ctrl.test()
-        print("Done!")
+        print(f"Done! {datetime.now()}")
     elif case == "v":
         print("That poor poor victim")
     elif case == "a":

@@ -22,17 +22,18 @@ def read_file(requests):
 
 	return data_list
 
-def host(data_list):
+def host(data_list, reps):
 
 	os.system("echo "" > echo_times.txt")
 
-	for data in data_list:
-		prefix = "/ndn/" + data
-		os.system(f"echo {data} | ndnpoke {prefix} &")
-		time = datetime.now()
-		with open('echo_times.txt', 'a') as times:
-			#os.system(f"echo {data} | ndnpoke {prefix} &")
-			times.write(f"{prefix}\t {time}\n")
+	for i in range(0, reps):
+		for data in data_list:
+			prefix = "/ndn/" + data
+			os.system(f"echo {data} | ndnpoke {prefix} &")
+			time = datetime.now()
+			with open('echo_times.txt', 'a') as times:
+				#os.system(f"echo {data} | ndnpoke {prefix} &")
+				times.write(f"{prefix}\t {time}\n")
 
 
 def main():
@@ -65,7 +66,7 @@ def main():
 	print("Just called run")
 		
 	#call host algorithm
-	host(req_list)
+	host(req_list, repetitions)
 	time.sleep(61)
 	print("DONE")
 

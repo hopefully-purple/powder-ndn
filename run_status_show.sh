@@ -5,7 +5,7 @@
 #User must specify the lengths.
 
 #Default will be every 30 seconds for 5 minutes.
-interval=10
+interval=5
 duration=5
 
 echo "This is the show status output for a unrelated timer, to be run during experiments." > timed_nfdc_status.txt
@@ -30,10 +30,28 @@ echo "" > temp3_timed_data.dat
 
 echo "" > temp_nfdc_status.txt
 
+#Error handling attempt
+ERROR=false
+#set -e
+trap 'catch $? $LINENO' ERR
+
+catch(){
+	echo "NFDC STATUS SHOW STOPPED RESPONDING"
+	if [ "$1" != "0" ]; then
+		ERROR=true
+		echo "ERROR = true"
+		#edit
+	fi
+}
+
 for (( c=$START; c<=$END; c++ ))
 do
 	nfdc status show >> timed_nfdc_status.txt #append to nfdc_status
 	nfdc status show > temp_nfdc_status.txt #overwrite inbetween file
+	
+	if [ "$ERROR" = true ]; then
+		break
+	fi
 
 	awk -F"=" 'NR!=1{print $2 > "temp0_timed_data.dat"}' temp_nfdc_status.txt #delimit by =
 	cat temp0_timed_data.dat | awk '{print > "temp1_timed_data.dat"}' ORS='\t' #put it all in one line separated by tabs	
@@ -45,30 +63,35 @@ done
 
 echo "Finished timing"
 
-#Edit timed data
-#Remove version, startimte, and uptime columns
-awk '{ print $3, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18 > "temp3_timed_data.dat"}' temp2_timed_data.dat
-#Get rid of unwanted date number on current time 12 includes mniutes?, 17 is just milliseconds
-cat temp3_timed_data.dat | cut -c 12- > temp0_timed_data.dat
-#Put in timed_data under the correct file
-cat temp0_timed_data.dat >> timed_data.dat
+edit(){
+	#Edit timed data
+	#Remove version, startimte, and uptime columns
+	awk '{ print $3, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18 > "temp3_timed_data.dat"}' temp2_timed_data.dat
+	#Get rid of unwanted date number on current time 12 includes mniutes?, 17 is just milliseconds
+	cat temp3_timed_data.dat | cut -c 12- > temp0_timed_data.dat
+	#Put in timed_data under the correct file
+	cat temp0_timed_data.dat >> timed_data.dat
 
-#clean up directory
-rm temp0_timed_data.dat
-rm temp1_timed_data.dat
-rm temp2_timed_data.dat
-rm temp3_timed_data.dat
+	#clean up directory
+	rm temp0_timed_data.dat
+	rm temp1_timed_data.dat
+	rm temp2_timed_data.dat
+	rm temp3_timed_data.dat
 
-rm temp_nfdc_status.txt
+	rm temp_nfdc_status.txt
+}
+
+edit
 
 #fg echo "Plot?(y/n): "
-
+echo "PLOTTING . . . "
 #read PLOT
 
 #if [ PLOT == "y" ]; then
 	#make plot and table
 gnuplot -persist -c "analyze_data.gnuplot" "$interval seconds for $duration minutes" $interval
-feh plot_timed_data.png & 
+#feh plot_timed_data.png & 
+display plot_timed_data.png &
 #fi
 
 echo "Finished"

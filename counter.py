@@ -26,7 +26,7 @@ class Counter():
         dump("Time out for interest", interest.getName().toUri())
         dump(f"<<{time}\n")
 
-        with open('infile.dat', 'a') as infile:
+        with open('in.dat', 'a') as infile:
             infile.write(f"{time}\n")
 
 
