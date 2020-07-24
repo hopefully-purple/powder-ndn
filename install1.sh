@@ -52,5 +52,6 @@ cp /local/repository/run_status_show.sh ~/
 cp /local/repository/timed_nfdc_status.txt ~/
 cp /local/repository/analyze_data.gnuplot ~/
 cp /local/repository/rsave_files.sh ~/
+cp /local/repository/redo_time.py ~/
 # create a udp tunnel
 #nfdc face create udp4://10.10.2.2 persistency permanent
