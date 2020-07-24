@@ -23,3 +23,5 @@ sudo mv stats_"$1".txt $DIR
 cp outin.dat outin_"$1".txt
 sudo mv outin_"$1".txt $DIR
 
+cp results.dat results_"$1".dat
+sudo mv results_"$1".dat $DIR
