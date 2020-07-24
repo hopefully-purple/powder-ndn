@@ -130,8 +130,10 @@ class Control():
 
         #This will result in out.dat and in.dat population, as well as stats_file
         for i in range(0, self.total_reqs):
-            if i % self.total_reqs == 0:
-                print(f"{i} repetition")
+            if self.total_reqs % i == 0:
+                print(f"{i} repetition {datetime.now()}")
+                with open ('terminal_output.txt', 'w') as term:
+                    term.write(f"{i} repetition {datetime.now()}\n")
             randstring = self.generate_random(15)
             make.run_reqs(randstring)
 

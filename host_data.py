@@ -26,14 +26,13 @@ def host(data_list, reps):
 
 	os.system("echo "" > echo_times.txt")
 
-	for i in range(0, reps):
-		for data in data_list:
-			prefix = "/ndn/" + data
-			os.system(f"echo {data} | ndnpoke {prefix} &")
-			time = datetime.now()
-			with open('echo_times.txt', 'a') as times:
-				#os.system(f"echo {data} | ndnpoke {prefix} &")
-				times.write(f"{prefix}\t {time}\n")
+#for i in range(0, reps):
+	for data in data_list:
+		prefix = "/ndn/" + data
+		os.system(f"echo {data} | ndnpoke {prefix} &")
+		time = datetime.now()
+		with open('echo_times.txt', 'a') as times:
+			times.write(f"{prefix}\t {time}\n")
 
 
 def main():

@@ -54,10 +54,16 @@ def victim():
 
 def attacker(ctrl):
     print("Attack protocol will populate the same files as a regular use case.")
+    with open('stats.file.txt', 'w') as stats:
+        stats.write("ATTACK RUN 5,000")
+
     print("Beginning attack protocol.")
     print(datetime.now())
+    
     ctrl.attack()
+    
     print("Attack Complete")
+    print(datetime.now())
 
 def plot(reqs, reps):
 
@@ -72,8 +78,8 @@ def plot(reqs, reps):
         pass
 
     #Take off the first 18 characters of the in.dat and out.dat to get rid of unwanted date info
-    os.system("cat in.dat | cut -c 21- > temp_out.dat")
-    os.system("cat out.dat | cut -c 21- > temp_in.dat")
+    os.system("cat in.dat | cut -c 18- > temp_out.dat")
+    os.system("cat out.dat | cut -c 18- > temp_in.dat")
 
     #Put both data into two columns in the same file 
     os.system("paste temp_out.dat temp_in.dat | awk '{$3=\"\"; print > \"temp_outin.dat\"}'")
@@ -83,7 +89,7 @@ def plot(reqs, reps):
     with open('temp_outin.dat', 'r') as outin:
         for line in outin:
             data = line.split()
-            result = int(data[0]) - int(data[1])
+            result = float(data[0]) - float(data[1])
             results.append(result)
 
     with open('temp_results.dat', 'w') as temp:
@@ -108,7 +114,7 @@ def plot(reqs, reps):
     os.system("paste temp_outin.dat temp_results.dat | awk '{$4=\"\"; print > \"outin.dat\"}'")
 
     #Call gnuplot script
-    os.system(f"gnuplot -persist -c \"analyze_outin.gnuplot\" \"{reqs} per rep; {reps} repetitions\" \"{reqs}\"")
+    os.system(f"gnuplot -persist -c \"analyze_outin.gnuplot\" \"{reqs} requests per rep; {reps} repetitions\" \"{reqs}\"")
     os.system("display plot_outin_data.png")
 
     #Clean up extra files

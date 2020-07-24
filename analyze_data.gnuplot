@@ -3,14 +3,15 @@
 TITLE = ARG1
 INTERVAL = ARG2
 # Set the output to a png file
-set terminal png size 1000,800
+set terminal png size 1300,800
 
 # The file we'll write the graph to
 set output 'plot_timed_data.png'
 
 # The graphic title
 set title TITLE
-
+set xlabel "Time"
+set ylabel "Entries"
 #Move legend
 set key outside top
 
@@ -22,6 +23,16 @@ set grid
 
 #plot [0:999000] 'timed_data.dat' u 1:9 title "InData" w linespoints
 #plot 'timed_data.dat' u 1:13 w linespoints
-plot "timed_data.dat" u 1:3 title "FIB" w linespoints, "timed_data.dat" u 1:4 title "PIT" w linespoints lw 3, "timed_data.dat" u 1:6 title "ContentStore" w linespoints lw 3, "timed_data.dat" u 1:7 title "InInterests" with linespoints, "timed_data.dat" u 1:8 title "OutInterests" with linespoints, "timed_data.dat" u 1:9 title "InData" with linespoints, "timed_data.dat" u 1:10 title "OutData" with linespoints, "timed_data.dat" u 1:11 title "InNack" w linespoints, "timed_data.dat" u 1:12 title "OutNack" w linespoints, "timed_data.dat" u 1:13 title "SatisfiedInterests" with linespoints lw 3, "timed_data.dat" u 1:14 title "UnsatisfiedInterests" with linespoints
+plot "timed_data.dat" u 1:3 title "FIB" w linespoints, \
+	"timed_data.dat" u 1:4 title "PIT" w linespoints lw 3, \
+	"timed_data.dat" u 1:6 title "ContentStore" w linespoints lw 3, \
+	"timed_data.dat" u 1:7 title "InInterests" with linespoints, \
+	"timed_data.dat" u 1:8 title "OutInterests" with linespoints, \
+	"timed_data.dat" u 1:9 title "InData" with linespoints, \
+	"timed_data.dat" u 1:10 title "OutData" with linespoints, \
+	"timed_data.dat" u 1:11 title "InNack" w linespoints, \
+	"timed_data.dat" u 1:12 title "OutNack" w linespoints, \
+	"timed_data.dat" u 1:13 title "SatisfiedInterests" with linespoints lw 3, \
+	"timed_data.dat" u 1:14 title "UnsatisfiedInterests" with linespoints lw 3
 
 
