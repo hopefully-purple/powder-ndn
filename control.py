@@ -121,6 +121,7 @@ class Control():
                 req_num += 1
                 self.send_request(request, i, req_num)
             req_num = 0
+            time.sleep(1) #Pause betweeen reps, seeing if there's a difference
 
     def attack(self):
         """ ATTACK """

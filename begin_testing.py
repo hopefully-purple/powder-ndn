@@ -3,6 +3,7 @@ import os
 import time
 from control import Control
 from datetime import datetime
+from convert_time import Convert
 
 def questions(ctrl):
     """ Function that asks the user questions about the setup for the test"""
@@ -18,7 +19,8 @@ def questions(ctrl):
     elif control_or_victim == "p":
         requs = input("requests = ")
         repets = input("repetitions = ")
-        plot(requs, repets)
+        con = Convert(requs, repets)
+        con.setup()
         return control_or_victim
 
     num_reqs = input(f"Total Number of Requests per Repetition = {ctrl.total_reqs} : ")
@@ -65,61 +67,6 @@ def attacker(ctrl):
     print("Attack Complete")
     print(datetime.now())
 
-def plot(reqs, reps):
-
-    #Create temp files
-    with open('temp_out.dat', 'w') as temp:
-        pass
-    with open('temp_in.dat', 'w') as temp:
-        pass
-    with open('temp_outin.dat', 'w') as temp:
-        pass
-    with open('outin.dat', 'w') as outin:
-        pass
-
-    #Take off the first 18 characters of the in.dat and out.dat to get rid of unwanted date info
-    os.system("cat in.dat | cut -c 18- > temp_out.dat")
-    os.system("cat out.dat | cut -c 18- > temp_in.dat")
-
-    #Put both data into two columns in the same file 
-    os.system("paste temp_out.dat temp_in.dat | awk '{$3=\"\"; print > \"temp_outin.dat\"}'")
-
-    results = []
-    #calculate the difference and store in results
-    with open('temp_outin.dat', 'r') as outin:
-        for line in outin:
-            data = line.split()
-            result = float(data[0]) - float(data[1])
-            results.append(result)
-
-    with open('temp_results.dat', 'w') as temp:
-        for number in results:
-            temp.write(f"{number}\n")
-
-    #put results list in a temp file
-    with open('results.dat', 'w') as temp:
-        i = 0 #Keeps track of line number
-        j = 1 #Keeps track of repetitions
-        temp.write(f"Repetition #{j}\n")
-        for number in results:
-            i+= 1
-            temp.write(f"{number}\n")
-            if i == reqs and j != reps:
-                j += 1
-                temp.write("\n\n")#Skip two lines and reset i
-                temp.write(f"Repetition #{j}\n")
-                i = 0
-
-    #add the column to the outin.dat
-    os.system("paste temp_outin.dat temp_results.dat | awk '{$4=\"\"; print > \"outin.dat\"}'")
-
-    #Call gnuplot script
-    os.system(f"gnuplot -persist -c \"analyze_outin.gnuplot\" \"{reqs} requests per rep; {reps} repetitions\" \"{reqs}\"")
-    os.system("display plot_outin_data.png")
-
-    #Clean up extra files
-    os.system("rm temp_in.dat temp_out.dat temp_results.dat temp_outin.dat")
-
 def main():
     
     ctrl = Control(100, 15)
@@ -148,7 +95,8 @@ def main():
     elif again == "n":
         print("Peace out")
     elif again == "p":
-        plot(ctrl.total_reqs, ctrl.reps)
+        con = Convert(ctrol.total_reqs, ctrl.reps)
+        con.setup()
 
 
 main()
