@@ -5,7 +5,7 @@
 #User must specify the lengths.
 
 interval=5
-duration=1
+duration=2
 
 echo "This is the show status output for a unrelated timer, to be run during experiments." > timed_nfdc_status.txt
 echo "Every $interval seconds for $duration minutes" >> timed_nfdc_status.txt
@@ -22,11 +22,10 @@ date --date="+$totalseconds seconds" +"%Y-%m-%d %H:%M:%S"
 
 #echo "CurrentTime\tFib\tPit\tMeasurements\tCs\tInInterests\tOutInterests\tInData\tOutData\tInNacks\tOutNacks\tSatisfiedInterests\tUnsatisfiedInterests\n" > timed_data.dat
 echo "# Data file for nfdc stats\n" > timed_data.dat
-echo "" > temp0_timed_data.dat
-echo "" > temp1_timed_data.dat
-echo "" > temp2_timed_data.dat
-echo "" > temp3_timed_data.dat
 
+for i in 0 1 2 3 4 5; do
+	echo "" > temp"$i"_timed_data.dat
+done
 echo "" > temp_nfdc_status.txt
 
 #Error handling attempt
@@ -71,22 +70,23 @@ edit(){
 	#Remove version, startimte, and uptime columns
 	awk '{ print $3, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18 > "temp3_timed_data.dat"}' temp2_timed_data.dat
 
-	#call redo_time.py and set it equal to a new list
+	#call redo_time.py, it will put the converted time into temp4
 	python3 redo_time.py 
-	echo "after redo-time"
-	#Replace the first word of each line with next item
 
+	#Remove currenttime column from temp3, put in temp 5
+	awk '{print $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14 > "temp5_timed_data.dat"}' temp3_timed_data.dat
+
+	#Add the new time column in temp4 to the beginning of temp5 into temp0
+	paste temp4_timed_data.dat temp5_timed_data.dat | awk '{$15=""; print > "temp0_timed_data.dat"}'
 	#Get rid of unwanted date number on current time 12 includes mniutes?, 17 is just milliseconds
-	#cat temp3_timed_data.dat | cut -c 10- > temp0_timed_data.dat
+	cat temp0_timed_data.dat | cut -c 5- > temp1_timed_data.dat
 	#Put in timed_data under the correct file
-	cat temp0_timed_data.dat >> timed_data.dat
+	cat temp1_timed_data.dat >> timed_data.dat
 
 	#clean up directory
-	rm temp0_timed_data.dat
-	rm temp1_timed_data.dat
-	rm temp2_timed_data.dat
-	rm temp3_timed_data.dat
-
+	for i in 0 1 2 3 4 5; do
+		rm temp"$i"_timed_data.dat
+	done
 	rm temp_nfdc_status.txt
 }
 
