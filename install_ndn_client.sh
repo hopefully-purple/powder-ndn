@@ -12,7 +12,7 @@ sudo apt-get install imagemagick -y
 git clone https://github.com/Pesa/PyNDN2 ~/PyNDN2
 cd ~/PyNDN2 && git merge remotes/origin/packet03
 pip3 install ~/PyNDN2
-
+sudo pip3 install python-dateutil
 # copy the client code to the user's home directory
 cp /local/repository/request_data.py ~/
 
