@@ -22,11 +22,10 @@ def read_file(requests):
 
 	return data_list
 
-def host(data_list, reps):
+def host(data_list):
 
 	os.system("echo "" > echo_times.txt")
 
-#for i in range(0, reps):
 	for data in data_list:
 		prefix = "/ndn/" + data
 		os.system(f"echo {data} | ndnpoke {prefix} &")
@@ -43,8 +42,6 @@ def main():
 	#ask for settings
 	requests = input("How many satisfiable requests per repetition?: ")
 	requests = int(requests)
-	repetitions = input("How many repetitions?: ")
-	repetitions = int(repetitions)
 
 	#Prep list
 	req_list = read_file(requests)
@@ -65,7 +62,7 @@ def main():
 	print("Just called run")
 		
 	#call host algorithm
-	host(req_list, repetitions)
+	host(req_list)
 	time.sleep(61)
 	print("DONE")
 
