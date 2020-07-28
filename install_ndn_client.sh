@@ -29,7 +29,7 @@ cp /local/repository/stats_file.txt ~/
 cp /local/repository/control.py ~/
 cp /local/repository/nsave_files.sh ~/
 cp /local/repository/counter.py ~/
-
+cp /local/repository/convert_time.py ~/
 cp /local/repository/make_requests.py ~/
 cp /local/repository/analyze_outin.gnuplot ~/
 # copy the two .txt files into the user's home directory
