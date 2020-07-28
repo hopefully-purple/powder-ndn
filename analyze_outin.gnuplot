@@ -3,7 +3,6 @@
 #set arguments (title, req per rep)
 TITLE = ARG1
 REQS = ARG2
-#IN = ARG3
 
 #Set the output to a png file
 set terminal png size 1300,800
@@ -12,7 +11,7 @@ set terminal png size 1300,800
 set output 'plot_outin_data.png'
 
 #Set the graphic title
-set title TITLE
+set title TITLE 
 
 #Move legend
 set key outside top
@@ -21,7 +20,7 @@ set key autotitle columnheader
 stats 'results.dat' using 0 nooutput
 
 set xlabel "Number of Requests"
-set ylabel "Router Response time (milliseconds)"
+set ylabel "Router Response time (seconds)"
 
 if (REQS > 30) {
 	set autoscale x
@@ -33,7 +32,20 @@ if (REQS > 30) {
 }
 set grid
 
+set print 'gnuplotstatistics.txt'
+stats 'gnustats.dat' index 0 prefix "A"
+unset print
+#stats 'results.dat' index 1 prefix "A"
+#stats 'results.dat' index 1 prefix "A"
+#stats 'results.dat' index 1 prefix "A"
+#stats 'results.dat' index 1 prefix "A"
+#stats 'results.dat' index 1 prefix "A"
+#stats 'results.dat' index 1 prefix "A"
+#stats 'results.dat' index 1 prefix "A"
+
+#set label 1 at A_index_max, graph 0.9 "max" center offset 0,1
+
 #Plot with math
 #plot [0:REQS] 'results.dat' w linespoints 
-plot for [i=0:(STATS_blocks - 1)] 'results.dat' index i w lines #points
+plot for [i=0:(STATS_blocks - 1)] 'results.dat' index i w lines 
 #plot '1results.dat' index IN w lines
