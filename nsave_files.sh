@@ -25,3 +25,7 @@ sudo mv outin_"$1".txt $DIR
 
 cp results.dat results_"$1".dat
 sudo mv results_"$1".dat $DIR
+
+cp gnuplotstatistics.txt gnuplotstats_"$1".txt
+sudo mv gnuplotstats_"$1".txt $DIR
+
