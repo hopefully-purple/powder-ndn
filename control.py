@@ -114,6 +114,7 @@ class Control():
 
         # Loop for the number of repetitions
         print("Sending requests")
+        start = datetime.now()
         for i in range(0, self.reps):
             print(f"Repetition #{i + 1} {datetime.now()}\n")
             # Send specified number of requests
@@ -121,7 +122,8 @@ class Control():
                 req_num += 1
                 self.send_request(request, i, req_num)
             req_num = 0
-            time.sleep(1) #Pause betweeen reps, seeing if there's a difference
+
+        return start
 
     def attack(self):
         """ ATTACK """
@@ -130,7 +132,7 @@ class Control():
         self.total_reqs = 5000
 
         #This will result in out.dat and in.dat population, as well as stats_file
-        for i in range(0, self.total_reqs):
+        for i in range(1, self.total_reqs):
             if self.total_reqs % i == 0:
                 print(f"{i} repetition {datetime.now()}")
                 with open ('terminal_output.txt', 'w') as term:
