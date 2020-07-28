@@ -19,7 +19,7 @@ def questions(ctrl):
     elif control_or_victim == "p":
         requs = input("requests = ")
         repets = input("repetitions = ")
-        con = Convert(requs, repets)
+        con = Convert(requs, repets, "2020-07-28 14:58:13.755885", "2020-07-28 14:58:35.611365")
         con.setup()
         return control_or_victim
 
@@ -78,8 +78,9 @@ def main():
     if case == "c":
         #ctrl = Control(100, 15) #gack this could pose a problem!
         print("Call control algorithm")
-        ctrl.test()
-        print(f"Done! {datetime.now()}")
+        start = ctrl.test()
+        stop = datetime.now()
+        print(f"Done! {stop}")
     elif case == "v":
         print("That poor poor victim")
     elif case == "a":
@@ -90,12 +91,12 @@ def main():
         main()
     elif again == "ys":
         questions(ctrl)
-        ctrl.test()
+        start = ctrl.test()
         print("Done!")
     elif again == "n":
         print("Peace out")
     elif again == "p":
-        con = Convert(ctrol.total_reqs, ctrl.reps)
+        con = Convert(ctrl.total_reqs, ctrl.reps, start, stop)
         con.setup()
 
 
