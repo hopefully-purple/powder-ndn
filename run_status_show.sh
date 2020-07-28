@@ -28,6 +28,7 @@ for i in 0 1 2 3 4 5; do
 done
 echo "" > temp_nfdc_status.txt
 
+#ENDT=""
 #Error handling attempt
 ERROR=false
 #set -e
@@ -38,7 +39,7 @@ catch(){
 	if [ "$1" != "0" ]; then
 		ERROR=true
 		echo "ERROR = true"
-		#edit
+		#$ENDT='date "+%F_%T"'
 	fi
 }
 
@@ -47,7 +48,7 @@ do
 	nfdc status show >> timed_nfdc_status.txt #append to nfdc_status
 	nfdc status show > temp_nfdc_status.txt #overwrite inbetween file
 	
-	if [ "$ERROR" = true ]; then
+	if [ "$ERROR" == true ]; then
 		break
 	fi
 
@@ -63,7 +64,14 @@ do
 	sleep $interval
 done
 
+#$ENDT=date +$F_%T
+#if [ "$ERROR" == false ]; then 
+#	$ENDT=$(date +$F_%T)
+#fi
+
 echo "Finished timing"
+now="$(date)"
+printf "Ended %s\n" "$now"
 
 edit(){
 	#Edit timed data
