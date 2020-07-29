@@ -15,7 +15,8 @@ pip3 install ~/PyNDN2
 sudo pip3 install python-dateutil
 
 
-cp -R /local/repository/node ~/
+cp -R /local/repository/node/code ~/
+cp -R /local/repository/node/data_collection ~/
 cp /local/repository/begin_testing.py ~/
 
 # copy the client code to the user's home directory

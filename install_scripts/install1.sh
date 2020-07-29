@@ -43,7 +43,8 @@ cp /local/repository/.vimrc ~/
 cp /local/repositoy/.1bashrc ~/.bashrc
 
 #copy scripts and files
-cp -R /local/repository/router ~/
+cp -R /local/repository/router/code ~/
+cp -R /local/repository/router/data_collection ~/
 cp /local/repository/host_data.py ~/
 
 #cp /local/repository/host_data.py ~/
