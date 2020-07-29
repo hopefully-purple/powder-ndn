@@ -17,7 +17,7 @@ set title TITLE
 set key outside top
 
 set key autotitle columnheader
-stats 'results.dat' using 0 nooutput
+stats '~/node/data_collection/results.dat' using 0 nooutput
 
 set xlabel "Number of Requests"
 set ylabel "Router Response time (seconds)"
@@ -32,20 +32,9 @@ if (REQS > 30) {
 }
 set grid
 
-set print 'gnuplotstatistics.txt'
-stats 'gnustats.dat' index 0 prefix "A"
+set print '~/node/data_collection/gnuplotstatistics.txt'
+stats '~/node/data_collection/gnustats.dat' index 0 prefix "A"
 unset print
-#stats 'results.dat' index 1 prefix "A"
-#stats 'results.dat' index 1 prefix "A"
-#stats 'results.dat' index 1 prefix "A"
-#stats 'results.dat' index 1 prefix "A"
-#stats 'results.dat' index 1 prefix "A"
-#stats 'results.dat' index 1 prefix "A"
-#stats 'results.dat' index 1 prefix "A"
-
-#set label 1 at A_index_max, graph 0.9 "max" center offset 0,1
 
 #Plot with math
-#plot [0:REQS] 'results.dat' w linespoints 
-plot for [i=0:(STATS_blocks - 1)] 'results.dat' index i w lines 
-#plot '1results.dat' index IN w lines
+plot for [i=0:(STATS_blocks - 1)] '~/node/data_collection/results.dat' index i w lines 
