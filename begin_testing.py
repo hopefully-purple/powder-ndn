@@ -33,12 +33,12 @@ def questions(ctrl):
     wipe = input("Wipe stats_file?(y/n):")
         
     if wipe == "y":
-        with open('stats_file.txt', 'w') as stats:
+        with open('data_collection/stats_file.txt', 'w') as stats:
             stats.write("A clean slate!\n") #Eventually print out the settings
             stats.write(f"Requests per Rep: {ctrl.total_reqs}\t Total Reps: {ctrl.reps}\n")
             stats.write("CONTROL CASE\n")
     elif wipe == "n":
-        with open('stats_file.txt', 'a') as stats:
+        with open('data_collection/stats_file.txt', 'a') as stats:
             stats.write("\n ANOTHER RUN\n")
             stats.write(f"Requests per Rep: {ctrl.total_reqs}\t Total Reps: {ctrl.reps}\n")
             
@@ -49,14 +49,13 @@ def questions(ctrl):
     else:
         return "empty"
     
-    #return control_or_victim
 
 def victim():
     print("GACK")
 
 def attacker(ctrl):
     print("Attack protocol will populate the same files as a regular use case.")
-    with open('stats.file.txt', 'w') as stats:
+    with open('data_collection/stats.file.txt', 'w') as stats:
         stats.write("ATTACK RUN 5,000")
 
     print("Beginning attack protocol.")
