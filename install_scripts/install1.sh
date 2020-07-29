@@ -34,7 +34,7 @@ sudo pip3 install python-dateutil
 mkdir -p ~/nlsr/log/
 
 # copy the appropriate nlsr configuration file to the nlsr directory
-#cp /local/repository/nlsr1.conf ~/nlsr/nlsr.conf
+#cp /local/repository/install_scripts/nlsr1.conf ~/nlsr/nlsr.conf
 
 # copy a .vimrc on each VM (provides useful remappings)
 cp /local/repository/.vimrc ~/
@@ -43,15 +43,18 @@ cp /local/repository/.vimrc ~/
 cp /local/repositoy/.1bashrc ~/.bashrc
 
 #copy scripts and files
+cp -R /local/repository/router ~/
 cp /local/repository/host_data.py ~/
-cp /local/repository/echo_times.txt ~/
-cp /local/repository/1host_data.py ~/
-cp /local/repository/alice.txt ~/
-cp /local/repository/whole_dict.txt ~/
-cp /local/repository/run_status_show.sh ~/
-cp /local/repository/timed_nfdc_status.txt ~/
-cp /local/repository/analyze_data.gnuplot ~/
-cp /local/repository/rsave_files.sh ~/
-cp /local/repository/redo_time.py ~/
+
+#cp /local/repository/host_data.py ~/
+#cp /local/repository/echo_times.txt ~/
+#cp /local/repository/1host_data.py ~/
+#cp /local/repository/alice.txt ~/
+#cp /local/repository/whole_dict.txt ~/
+#cp /local/repository/run_status_show.sh ~/
+#cp /local/repository/timed_nfdc_status.txt ~/
+#cp /local/repository/analyze_data.gnuplot ~/
+#cp /local/repository/rsave_files.sh ~/
+#cp /local/repository/redo_time.py ~/
 # create a udp tunnel
 #nfdc face create udp4://10.10.2.2 persistency permanent
