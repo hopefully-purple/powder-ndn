@@ -11,19 +11,19 @@
 #EXPNAME=$1
 
 #Check if saved_data directory exists
-DIR="/users/hopew/rosaved_data/"
+DIR="/users/hopew/data_collection/rosaved_data/"
 
 [ ! -d "$DIR" ] && sudo mkdir -p "$DIR"
 
-cp echo_times.txt echo_"$1".txt
-sudo mv echo_"$1".txt $DIR
+cp data_collection/echo_times.txt data_collection/echo_"$1".txt
+sudo mv data_collection/echo_"$1".txt $DIR
 
-cp plot_timed_data.png plot_"$1".png
-sudo mv plot_"$1".png $DIR
+cp data_collection/plot_timed_data.png data_collection/plot_"$1".png
+sudo mv data_collection/plot_"$1".png $DIR
 
-cp timed_nfdc_status.txt timed_nfdc_"$1".txt
-sudo mv timed_nfdc_"$1".txt $DIR
+cp data_collection/timed_nfdc_status.txt data_collection/timed_nfdc_"$1".txt
+sudo mv data_collection/timed_nfdc_"$1".txt $DIR
 
-cp timed_data.dat timed_data_"$1".dat
-sudo mv timed_data_"$1".dat $DIR
+cp data_collection/timed_data.dat data_collection/timed_data_"$1".dat
+sudo mv data_collection/timed_data_"$1".dat $DIR
 

@@ -5,10 +5,10 @@
 #User must specify the lengths.
 
 interval=5
-duration=2
+duration=1
 
-echo "This is the show status output for a unrelated timer, to be run during experiments." > timed_nfdc_status.txt
-echo "Every $interval seconds for $duration minutes" >> timed_nfdc_status.txt
+echo "This is the show status output for a unrelated timer, to be run during experiments." > data_collection/timed_nfdc_status.txt
+echo "Every $interval seconds for $duration minutes" >> data_collection/timed_nfdc_status.txt
 
 totalseconds=$((duration * 60))
 iterations=$((totalseconds / interval))
@@ -21,12 +21,12 @@ echo "Will end in $duration minutes at:"
 date --date="+$totalseconds seconds" +"%Y-%m-%d %H:%M:%S"
 
 #echo "CurrentTime\tFib\tPit\tMeasurements\tCs\tInInterests\tOutInterests\tInData\tOutData\tInNacks\tOutNacks\tSatisfiedInterests\tUnsatisfiedInterests\n" > timed_data.dat
-echo "# Data file for nfdc stats\n" > timed_data.dat
+echo "# Data file for nfdc stats\n" > data_collection/timed_data.dat
 
 for i in 0 1 2 3 4 5; do
-	echo "" > temp"$i"_timed_data.dat
+	echo "" > data_collection/temp"$i"_timed_data.dat
 done
-echo "" > temp_nfdc_status.txt
+echo "" > data_collection/temp_nfdc_status.txt
 
 #ENDT=""
 #Error handling attempt
@@ -45,8 +45,8 @@ catch(){
 
 for (( c=$START; c<=$END; c++ ))
 do
-	nfdc status show >> timed_nfdc_status.txt #append to nfdc_status
-	nfdc status show > temp_nfdc_status.txt #overwrite inbetween file
+	nfdc status show >> data_collection/timed_nfdc_status.txt #append to nfdc_status
+	nfdc status show > data_collection/temp_nfdc_status.txt #overwrite inbetween file
 	
 	if [ "$ERROR" == true ]; then
 		break
@@ -56,10 +56,10 @@ do
 		echo "Keeping connection alive"
 	fi
 
-	awk -F"=" 'NR!=1{print $2 > "temp0_timed_data.dat"}' temp_nfdc_status.txt #delimit by =
-	cat temp0_timed_data.dat | awk '{print > "temp1_timed_data.dat"}' ORS='\t' #put it all in one line separated by tabs	
-	echo "\n" >> temp1_timed_data.dat #add a new line?
-	cat temp1_timed_data.dat >> temp2_timed_data.dat #append to temp2 
+	awk -F"=" 'NR!=1{print $2 > "data_collection/temp0_timed_data.dat"}' data_collection/temp_nfdc_status.txt #delimit by =
+	cat data_collection/temp0_timed_data.dat | awk '{print > "data_collection/temp1_timed_data.dat"}' ORS='\t' #put it all in one line separated by tabs	
+	echo "\n" >> data_collection/temp1_timed_data.dat #add a new line?
+	cat data_collection/temp1_timed_data.dat >> data_collection/temp2_timed_data.dat #append to temp2 
 
 	sleep $interval
 done
@@ -76,26 +76,26 @@ printf "Ended %s\n" "$now"
 edit(){
 	#Edit timed data
 	#Remove version, startimte, and uptime columns
-	awk '{ print $3, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18 > "temp3_timed_data.dat"}' temp2_timed_data.dat
+	awk '{ print $3, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18 > "data_collection/temp3_timed_data.dat"}' data_collection/temp2_timed_data.dat
 
 	#call redo_time.py, it will put the converted time into temp4
-	python3 redo_time.py 
+	python3 code/redo_time.py 
 
 	#Remove currenttime column from temp3, put in temp 5
-	awk '{print $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14 > "temp5_timed_data.dat"}' temp3_timed_data.dat
+	awk '{print $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14 > "data_collection/temp5_timed_data.dat"}' data_collection/temp3_timed_data.dat
 
 	#Add the new time column in temp4 to the beginning of temp5 into temp0
-	paste temp4_timed_data.dat temp5_timed_data.dat | awk '{$15=""; print > "temp0_timed_data.dat"}'
+	paste data_collection/temp4_timed_data.dat data_collection/temp5_timed_data.dat | awk '{$15=""; print > "data_collection/temp0_timed_data.dat"}'
 	#Get rid of unwanted date number on current time 12 includes mniutes?, 17 is just milliseconds
-	cat temp0_timed_data.dat | cut -c 5- > temp1_timed_data.dat
+	cat data_collection/temp0_timed_data.dat | cut -c 5- > data_collection/temp1_timed_data.dat
 	#Put in timed_data under the correct file
-	cat temp1_timed_data.dat >> timed_data.dat
+	cat data_collection/temp1_timed_data.dat >> data_collection/timed_data.dat
 
 	#clean up directory
 	for i in 0 1 2 3 4 5; do
-		rm temp"$i"_timed_data.dat
+		rm data_collection/temp"$i"_timed_data.dat
 	done
-	rm temp_nfdc_status.txt
+	rm data_collection/temp_nfdc_status.txt
 }
 
 edit
@@ -106,9 +106,9 @@ echo "PLOTTING . . . "
 
 #if [ PLOT == "y" ]; then
 	#make plot and table
-gnuplot -persist -c "analyze_data.gnuplot" "$interval seconds for $duration minutes" $interval
+gnuplot -persist -c "code/analyze_data.gnuplot" "$interval seconds for $duration minutes" $interval
 #feh plot_timed_data.png & 
-display plot_timed_data.png &
+display data_collection/plot_timed_data.png &
 #fi
 
 echo "Finished"

@@ -8,7 +8,7 @@ from datetime import datetime
 
 timelist = []
 
-with open('temp3_timed_data.dat', 'r') as temp:
+with open('data_collection/temp3_timed_data.dat', 'r') as temp:
 	for line in temp:
 		for word in line.split():
 			if "2020" in word and "T" in word:
@@ -19,6 +19,6 @@ for item in timelist:
 	t_in_seconds = parsed_temp.strftime('%s')
 	newlist.append(t_in_seconds)
 
-with open('temp4_timed_data.dat', 'a') as temp:
+with open('data_collection/temp4_timed_data.dat', 'a') as temp:
 	for item in newlist:
 		temp.write(f"{item}\n")

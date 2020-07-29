@@ -10,7 +10,7 @@ def read_file(requests):
 	
 	data_list = []
 
-	with open('whole_dict.txt', 'r') as alice:
+	with open('code/whole_dict.txt', 'r') as alice:
 		num = 0
 		for line in alice:
 			for word in line.split():
@@ -24,13 +24,13 @@ def read_file(requests):
 
 def host(data_list):
 
-	os.system("echo "" > echo_times.txt")
+	os.system("echo "" > data_collection/echo_times.txt")
 
 	for data in data_list:
 		prefix = "/ndn/" + data
 		os.system(f"echo {data} | ndnpoke {prefix} &")
 		time = datetime.now()
-		with open('echo_times.txt', 'a') as times:
+		with open('data_collection/echo_times.txt', 'a') as times:
 			times.write(f"{prefix}\t {time}\n")
 
 
@@ -58,7 +58,7 @@ def main():
 		else:
 			print("GO!\n")
 	#Start the test
-	os.system("./run_status_show.sh &")
+	os.system("./code/run_status_show.sh &")
 	print("Just called run")
 		
 	#call host algorithm
