@@ -83,14 +83,15 @@ def create_routers(instantiateOn='pnode', cores=4, ram=8):
     routers.append(None)
 
     # create each VM
-    for i in range(1, 3):
+    for i in range(1, params.router_count):
         routers.append(mkVM('router' + str(i), GLOBALS.UBUNTU18_IMG, instantiateOn=instantiateOn, cores=cores, ram=ram))
 
     # run alternating install scripts on each vm to install software
     if params.router_count == 1:
-        if routers[1] is not None: 
-            router.addService(pg.Execute(shell="sh", command="chmod +x /local/repository/install_scripts/install1.sh"))
-            router.addService(pg.Execute(shell="sh", command="/local/repository/install_scripts/install1.sh"))
+        for router in routers:
+            if router is not None: 
+                router.addService(pg.Execute(shell="sh", command="chmod +x /local/repository/install_scripts/install1.sh"))
+                router.addService(pg.Execute(shell="sh", command="/local/repository/install_scripts/install1.sh"))
     else:
         num = 0    
         for router in routers:
