@@ -125,20 +125,20 @@ routers = create_routers()
 
 # setup the first LAN
 LAN1 = request.LAN("LAN1")
-LAN1.addInterface(routers[0].addInterface())
+LAN1.addInterface(routers[1].addInterface())
 if nodes[1] is not None:
-    LAN1.addInterface(nodes[0].addInterface())
+    LAN1.addInterface(nodes[1].addInterface())
 
 # setup the second LAN
 if params.node_count == 2:
     LAN2 = request.LAN("LAN2")
-    LAN2.addInterface(routers[1].addInterface())
+    LAN2.addInterface(routers[2].addInterface())
     if nodes[2] is not None:
-        LAN2.addInterface(nodes[1].addInterface())
+        LAN2.addInterface(nodes[2].addInterface())
 
 # setup a link between routers
 if params.router_count == 2:
-    request.Link(members=[routers[0], routers[1]])
+    request.Link(members=[routers[1], routers[2]])
 
 # output request
 pc.printRequestRSpec(request)
