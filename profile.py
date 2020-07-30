@@ -130,7 +130,7 @@ routers = create_routers()
     #LAN.addInterface(routers[1].addInterface())
     #if node is not None:
         #LAN.addInterface(node.addInterface())
-for i in range(1, params.node_count + 1)
+for i in range(1, params.node_count + 1):
     lan = "LAN" + str(i)
     LAN = request.LAN(lan)
     LAN.addInterface(routers[1].addInterface())
