@@ -114,7 +114,7 @@ pnode = request.RawPC('pnode')
 pnode.hardware_type = GLOBALS.PNODE_D740
 
 # create nodes on dedicated host
-nodes = create_nodes(count=params.n, prefix=1)
+nodes = create_nodes(count=params.node_count, prefix=1)
 routers = create_routers()
 
 #setup LANs
