@@ -19,14 +19,14 @@ class Convert():
         otimelist = []
         itimelist = []
         #Take the out and in files, convert each time into seconds, populate corresponding lists
-        with open('out.dat', 'r') as out:
+        with open('data_collection/out.dat', 'r') as out:
             for line in out:
                 otimelist.append(line)
                 #parsed_temp = dp.parse(line)
                 #t_in_seconds = parsed_temp.strftime('%s')
                 #otimelist.append(t_in_seconds)
 
-        with open('in.dat', 'r') as infile:
+        with open('data_collection/in.dat', 'r') as infile:
             for line in infile:
                 itimelist.append(line)
                 #parsed_temp = dp.parse(line)
@@ -34,8 +34,8 @@ class Convert():
                 #itimelist.append(t_in_seconds)
         
         #print these lists into temp files, reformatting with rep separations
-        self.datasetformat(otimelist, "temp_out.dat")
-        self.datasetformat(itimelist, "temp_in.dat")
+        self.datasetformat(otimelist, "data_collection/temp_out.dat")
+        self.datasetformat(itimelist, "data_collection/temp_in.dat")
 
     def datasetformat(self, inlist, filename):
         with open(filename, 'w') as outfile:
@@ -54,13 +54,13 @@ class Convert():
 
     def setup(self):
         #Create temp files
-        with open('temp_out.dat', 'w') as temp:
+        with open('data_collection/temp_out.dat', 'w') as temp:
             pass
-        with open('temp_in.dat', 'w') as temp:
+        with open('data_collection/temp_in.dat', 'w') as temp:
             pass
-        with open('temp_outin.dat', 'w') as temp:
+        with open('data_collection/temp_outin.dat', 'w') as temp:
             pass
-        with open('outin.dat', 'w') as temp:
+        with open('data_collection/outin.dat', 'w') as temp:
             pass
 
         #call conversion method
@@ -68,10 +68,10 @@ class Convert():
         results = []
 
         #put both data files into two columns of the same file
-        os.system("paste temp_out.dat temp_in.dat | awk '{print > \"temp_outin.dat\"}'")
+        os.system("paste data_collection/temp_out.dat data_collection/temp_in.dat | awk '{print > \"data_collection/temp_outin.dat\"}'")
 
         #calculate the difference and store in results
-        with open('temp_outin.dat', 'r') as outin:
+        with open('data_collection/temp_outin.dat', 'r') as outin:
             for line in outin:
                 if "Rep" in line or "0" not in line:
                     continue
@@ -90,18 +90,18 @@ class Convert():
                     results.append(result)
 
         #Put results in results.dat
-        self.datasetformat(results, "results.dat")
+        self.datasetformat(results, "data_collection/results.dat")
 
         #Put results in gnustats.dat without format
-        with open("gnustats.dat", 'w') as stats:
+        with open("data_collection/gnustats.dat", 'w') as stats:
             for number in results:
                 stats.write(f"{number}\n")
 
         #add the column to the outin.dat
-        os.system("paste temp_outin.dat results.dat | awk '{print > \"outin.dat\"}'")
+        os.system("paste data_collection/temp_outin.dat data_collection/results.dat | awk '{print > \"data_collection/outin.dat\"}'")
 
         #clean up extra files
-        os.system("rm temp_in.dat temp_out.dat temp_outin.dat")
+        os.system("rm data_collection/temp_in.dat data_collection/temp_out.dat data_collection/temp_outin.dat")
 
         #Total time it took
         if type(self.start) is str:
@@ -111,9 +111,7 @@ class Convert():
             stop = self.stop
             start = self.start
         duration = stop - start
-        print(duration)
         duration_in_s = duration.total_seconds()
-        print(duration_in_s)
         total_time = divmod(duration_in_s, 60)[0]
         if total_time == 0:
             label = "{} total seconds"
@@ -121,13 +119,12 @@ class Convert():
         else:
             label = "{} total minutes"
             total_time = label.format(total_time)
-        print(total_time)
 
-        with open("gnuplotstatistics.txt", 'w') as stat:
+        with open("data_collection/gnuplotstatistics.txt", 'w') as stat:
             pass
         #call gnuplot script
-        os.system(f"gnuplot -persist -c \"analyze_outin.gnuplot\" \"{self.reqs} requests per rep; {self.reps} repetitions; {total_time}\" \"{self.reqs}\"")
-        os.system("display plot_outin_data.png")
+        os.system(f"gnuplot -persist -c \"code/analyze_outin.gnuplot\" \"{self.reqs} requests per rep; {self.reps} repetitions; {total_time}\" \"{self.reqs}\"")
+        os.system("display data_collection/plot_outin_data.png")
 
 
 

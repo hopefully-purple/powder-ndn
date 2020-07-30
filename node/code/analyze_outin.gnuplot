@@ -8,7 +8,7 @@ REQS = ARG2
 set terminal png size 1300,800
 
 # Set the file we'll write the graph to
-set output 'plot_outin_data.png'
+set output 'data_collection/plot_outin_data.png'
 
 #Set the graphic title
 set title TITLE 
@@ -17,7 +17,7 @@ set title TITLE
 set key outside top
 
 set key autotitle columnheader
-stats '~/node/data_collection/results.dat' using 0 nooutput
+stats 'data_collection/results.dat' using 0 nooutput
 
 set xlabel "Number of Requests"
 set ylabel "Router Response time (seconds)"
@@ -32,9 +32,9 @@ if (REQS > 30) {
 }
 set grid
 
-set print '~/node/data_collection/gnuplotstatistics.txt'
-stats '~/node/data_collection/gnustats.dat' index 0 prefix "A"
+set print 'data_collection/gnuplotstatistics.txt'
+stats 'data_collection/gnustats.dat' index 0 prefix "A"
 unset print
 
 #Plot with math
-plot for [i=0:(STATS_blocks - 1)] '~/node/data_collection/results.dat' index i w lines 
+plot for [i=0:(STATS_blocks - 1)] 'data_collection/results.dat' index i w lines 

@@ -17,7 +17,7 @@ class Counter():
         dump("Got data packet with name", data.getName().toUri())
         dump(f"<<{time}<<\n", data.getContent().toRawStr()) 
 
-        with open('in.dat', 'a') as infile:
+        with open('data_collection/in.dat', 'a') as infile:
             infile.write(f"{time}\n")
 
     def onTimeout(self, interest):
@@ -26,7 +26,7 @@ class Counter():
         dump("Time out for interest", interest.getName().toUri())
         dump(f"<<{time}\n")
 
-        with open('in.dat', 'a') as infile:
+        with open('data_collection/in.dat', 'a') as infile:
             infile.write(f"{time}\n")
 
 
@@ -36,7 +36,7 @@ class Counter():
         dump("Network nack for interest", interest.getName().toUri())
         dump(f"<<{time}<<\n")
 
-        with open('in.dat', 'a') as infile:
+        with open('data_collection/in.dat', 'a') as infile:
             infile.write(f"{time}\n")
 
 
@@ -46,5 +46,5 @@ def dump(*list):
     result = ""
     for element in list:
         result += (element if type(element) is str else str(element)) + " "
-    with open('stats_file.txt', 'a') as output:    
+    with open('data_collection/stats_file.txt', 'a') as output:    
         output.write(f"{result}\n")

@@ -14,7 +14,7 @@ def dump(*list):
     result = ""
     for element in list:
         result += (element if type(element) is str else str(element)) + " "
-    with open('stats_file.txt', 'a') as output:    
+    with open('data_collection/stats_file.txt', 'a') as output:    
         output.write(f"{result}\n")
     
 
@@ -47,7 +47,7 @@ class MakeRequests():
         face.expressInterest(interest, counter.onData, counter.onTimeout, counter.onNetworkNack)
         dump(f">>{date}>>")
 
-        with open('out.dat', 'a') as outfile:
+        with open('data_collection/out.dat', 'a') as outfile:
             outfile.write(f"{date}\n")
 
         while counter._callbackCount < 1:
