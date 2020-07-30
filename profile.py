@@ -87,20 +87,19 @@ def create_routers(instantiateOn='pnode', cores=4, ram=8):
         routers.append(mkVM('router' + str(i), GLOBALS.UBUNTU18_IMG, instantiateOn=instantiateOn, cores=cores, ram=ram))
 
     # run alternating install scripts on each vm to install software
-    odd_router = True
+    num = 1
     for router in routers:
         if router is not None:
-            if odd_router:
+            if num == 1:
                 router.addService(pg.Execute(shell="sh", command="chmod +x /local/repository/install_scripts/install1.sh"))
                 router.addService(pg.Execute(shell="sh", command="/local/repository/install_scripts/install1.sh"))
                 
                 #router.addService(pg.Execute(shell="sh", command="chmod +x /local/repository/install_scripts/install1.sh"))
                 #router.addService(pg.Execute(shell="sh", command="/local/repository/install_scripts/install1.sh"))
-                
+                num += 1
             else:
                 router.addService(pg.Execute(shell="sh", command="chmod +x /local/repository/install2.sh"))
                 router.addService(pg.Execute(shell="sh", command="/local/repository/install2.sh"))
-            odd_router = not odd_router
 
     return routers
 
@@ -118,25 +117,24 @@ nodes = create_nodes(count=params.node_count, prefix=1)
 routers = create_routers()
 
 #setup LANs
-for node in nodes:
-    LAN = request.LAN("LAN")
-    LAN.addInterface(routers[1].addInterface())
-    if node is not None:
-        LAN.addInterface(node.addInterface())
+#for node in nodes:
+    #LAN = request.LAN("LAN")
+    #LAN.addInterface(routers[1].addInterface())
+    #if node is not None:
+        #LAN.addInterface(node.addInterface())
 
 # setup the first LAN
-#LAN1 = request.LAN("LAN1")
-#LAN1.addInterface(routers[1].addInterface())
-#for node in nodes1:
-    #if node is not None:
-        #LAN1.addInterface(node.addInterface())
+LAN1 = request.LAN("LAN1")
+LAN1.addInterface(routers[1].addInterface())
+if nodes[1] is not None:
+    LAN1.addInterface(nodes[1].addInterface())
 
 # setup the second LAN
-#AN2 = request.LAN("LAN2")
-#AN2.addInterface(routers[2].addInterface())
-#for node in nodes2:
-    #if node is not None:
-        #LAN2.addInterface(node.addInterface())
+if params.node_count == 2:
+    LAN2 = request.LAN("LAN2")
+    LAN2.addInterface(routers[1].addInterface())
+    if nodes[2] is not None:
+        LAN2.addInterface(nodes[2].addInterface())
 
 # setup a link between routers
 if params.router_count == 2:
