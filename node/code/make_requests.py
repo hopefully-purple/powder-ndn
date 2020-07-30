@@ -5,7 +5,7 @@ from pyndn import Face
 from pyndn import Interest
 from pyndn.transport import UdpTransport
 from pyndn.security import KeyChain
-from counter import Counter
+from code.counter import Counter
 from datetime import datetime
 
 def dump(*list):
