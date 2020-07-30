@@ -130,23 +130,30 @@ routers = create_routers()
     #LAN.addInterface(routers[1].addInterface())
     #if node is not None:
         #LAN.addInterface(node.addInterface())
+for i in range(1, params.node_count + 1)
+    lan = "LAN" + str(i)
+    LAN = request.LAN(lan)
+    LAN.addInterface(routers[1].addInterface())
+    if nodes[i] is not None:
+        LAN.addInterface(nodes[i].addInterface())
 
 # setup the first LAN
-LAN1 = request.LAN("LAN1")
-LAN1.addInterface(routers[1].addInterface())
-if nodes[1] is not None:
-    LAN1.addInterface(nodes[1].addInterface())
+#LAN1 = request.LAN("LAN1")
+#LAN1.addInterface(routers[1].addInterface())
+#if nodes[1] is not None:
+    #LAN1.addInterface(nodes[1].addInterface())
 
 # setup the second LAN
-if params.node_count == 2:
-    LAN2 = request.LAN("LAN2")
-    LAN2.addInterface(routers[1].addInterface())
-    if nodes[2] is not None:
-        LAN2.addInterface(nodes[2].addInterface())
+#if params.node_count == 2:
+    #LAN2 = request.LAN("LAN2")
+    #LAN2.addInterface(routers[1].addInterface())
+    #if nodes[2] is not None:
+        #LAN2.addInterface(nodes[2].addInterface())
 
 # setup a link between routers
-if params.router_count == 2:
-    request.Link(members=[routers[1], routers[2]])
+if params.router_count > 1:
+    for i in range(1, params.router_count + 1):
+        request.Link(members=[routers[i], routers[i + 1]])
 
 # output request
 pc.printRequestRSpec(request)
