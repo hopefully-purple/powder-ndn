@@ -87,10 +87,10 @@ def create_routers(instantiateOn='pnode', cores=4, ram=8):
         routers.append(mkVM('router' + str(i), GLOBALS.UBUNTU18_IMG, instantiateOn=instantiateOn, cores=cores, ram=ram))
 
     # run alternating install scripts on each vm to install software
-    num = 1
+    num = 0
     for router in routers:
-        if router is not None:
-            if num == 1:
+        if router is not None and num < params.router_count:
+            if num == 0:
                 router.addService(pg.Execute(shell="sh", command="chmod +x /local/repository/install_scripts/install1.sh"))
                 router.addService(pg.Execute(shell="sh", command="/local/repository/install_scripts/install1.sh"))
                 
@@ -100,6 +100,8 @@ def create_routers(instantiateOn='pnode', cores=4, ram=8):
             else:
                 router.addService(pg.Execute(shell="sh", command="chmod +x /local/repository/install2.sh"))
                 router.addService(pg.Execute(shell="sh", command="/local/repository/install2.sh"))
+
+                num += 1
 
     return routers
 
@@ -132,7 +134,7 @@ if nodes[1] is not None:
 # setup the second LAN
 if params.node_count == 2:
     LAN2 = request.LAN("LAN2")
-    LAN2.addInterface(routers[2].addInterface())
+    LAN2.addInterface(routers[1].addInterface())
     if nodes[2] is not None:
         LAN2.addInterface(nodes[2].addInterface())
 
