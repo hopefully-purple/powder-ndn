@@ -118,10 +118,10 @@ nodes = create_nodes(count=params.node_count, prefix=1)
 routers = create_routers()
 
 #setup LANs
-for i in range (0, params.node_count):
+for node in nodes:
     LAN = request.LAN("LAN")
     LAN.addInterface(routers[1].addInterface())
-    if nodes[i] is not None:
+    if node is not None:
         LAN.addInterface(node.addInterface())
 
 # setup the first LAN
