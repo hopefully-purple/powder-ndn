@@ -1,9 +1,9 @@
 import math
 import os
 import time
-from control import Control
+from code.control import Control
 from datetime import datetime
-from convert_time import Convert
+from code.convert_time import Convert
 
 def questions(ctrl):
     """ Function that asks the user questions about the setup for the test"""
@@ -12,7 +12,6 @@ def questions(ctrl):
     control_or_victim = input("Control Case or Victim or Attacker?(c/v/a/p): ")
 
     if control_or_victim == "v":
-        victim()
         return control_or_victim
     elif control_or_victim == "a":
         return control_or_victim
@@ -50,8 +49,16 @@ def questions(ctrl):
         return "empty"
     
 
-def victim():
-    print("GACK")
+def victim(ctrl):
+    print("Beginning victim usage")
+
+    ctrl.total_requests = 100
+    ctrl.reps = 9
+
+    with open('data_collection/stats_file.txt', 'w') as stats:
+        stats.write("A clean slate!\n") #Eventually print out the settings
+        stats.write(f"Requests per Rep: {ctrl.total_reqs}\t Total Reps: {ctrl.reps}\n")
+        stats.write("VICTIM CASE\n")
 
 def attacker(ctrl):
     print("Attack protocol will populate the same files as a regular use case.")
@@ -75,13 +82,16 @@ def main():
     
     # Begin running user specified case
     if case == "c":
-        #ctrl = Control(100, 15) #gack this could pose a problem!
         print("Call control algorithm")
         start = ctrl.test()
         stop = datetime.now()
         print(f"Done! {stop}")
     elif case == "v":
-        print("That poor poor victim")
+        victim(ctrl)
+        start = ctrl.test()
+        stop = datetime.now()
+        print(f"Started at {start}")
+        print(f"Done! {stop}")
     elif case == "a":
         attacker(ctrl)
 
