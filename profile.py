@@ -83,7 +83,7 @@ def create_routers(instantiateOn='pnode', cores=4, ram=8):
     routers.append(None)
 
     # create each VM
-    for i in range(1, params.router_count):
+    for i in range(1, params.router_count + 1):
         routers.append(mkVM('router' + str(i), GLOBALS.UBUNTU18_IMG, instantiateOn=instantiateOn, cores=cores, ram=ram))
 
     # run alternating install scripts on each vm to install software
