@@ -19,14 +19,19 @@ class GLOBALS(object):
 
 
 # define network parameters
-portal.context.defineParameter("n", "Nodes per LAN", portal.ParameterType.INTEGER, 2)
+portal.context.defineParameter("node_count", "Nodes per LAN", portal.ParameterType.INTEGER, 2)
+portal.context.defineParameter("router_count", "Routers", portal.ParameterType.INTEGER, 1)
 
 # retrieve the values the user specifies during instantiation
 params = portal.context.bindParameters()
 
 #  check parameter validity
-if params.n < 1 or params.n > 3:
+if params.node_count < 1 or params.node_count > 3:
     portal.context.reportError(portal.ParameterError("You must choose at least 1 and no more than 3 nodes."))
+
+#  check parameter validity
+if params.router_count < 1 or params.router_count > 3:
+    portal.context.reportError(portal.ParameterError("You must choose at least 1 and no more than 3 routers."))
 
 
 def mkVM(name, image, instantiateOn, cores, ram):
@@ -61,8 +66,6 @@ def create_nodes(count=2, prefix=1, instantiateOn='pnode', cores=2, ram=4):
     # run install scripts on each vm to install software
     for node in nodes:
         if node is not None:
-#           node.addService(pg.Execute(shell="sh", command="chmod +x /local/repository/install1.sh"))
-#           node.addService(pg.Execute(shell="sh", command="/local/repository/install1.sh"))
             node.addService(pg.Execute(shell="sh", command="chmod +x /local/repository/install_scripts/install_ndn_client.sh"))
             node.addService(pg.Execute(shell="sh", command="/local/repository/install_scripts/install_ndn_client.sh"))
 
@@ -80,20 +83,24 @@ def create_routers(instantiateOn='pnode', cores=4, ram=8):
     routers.append(None)
 
     # create each VM
-#   for i in range(1, 3):
+    for i in range(1, 3):
     routers.append(mkVM('router' + str(1), GLOBALS.UBUNTU18_IMG, instantiateOn=instantiateOn, cores=cores, ram=ram))
 
     # run alternating install scripts on each vm to install software
-#    odd_router = True
+    odd_router = True
     for router in routers:
         if router is not None:
-            #if odd_router:
-            router.addService(pg.Execute(shell="sh", command="chmod +x /local/repository/install_scripts/install1.sh"))
-            router.addService(pg.Execute(shell="sh", command="/local/repository/install_scripts/install1.sh"))
- #           else:
- #               router.addService(pg.Execute(shell="sh", command="chmod +x /local/repository/install2.sh"))
- #               router.addService(pg.Execute(shell="sh", command="/local/repository/install2.sh"))
-            #odd_router = not odd_router
+            if odd_router:
+                router.addService(pg.Execute(shell="sh", command="chmod +x /local/repository/install_scripts/install1.sh"))
+                router.addService(pg.Execute(shell="sh", command="/local/repository/install_scripts/install1.sh"))
+                
+                #router.addService(pg.Execute(shell="sh", command="chmod +x /local/repository/install_scripts/install1.sh"))
+                #router.addService(pg.Execute(shell="sh", command="/local/repository/install_scripts/install1.sh"))
+                
+            else:
+                router.addService(pg.Execute(shell="sh", command="chmod +x /local/repository/install2.sh"))
+                router.addService(pg.Execute(shell="sh", command="/local/repository/install2.sh"))
+            odd_router = not odd_router
 
     return routers
 
@@ -107,17 +114,22 @@ pnode = request.RawPC('pnode')
 pnode.hardware_type = GLOBALS.PNODE_D740
 
 # create nodes on dedicated host
+nodes = create_nodes(count=params.n, prefix=1)
 routers = create_routers()
-nodes1 = create_nodes(count=params.n, prefix=1)
-#nodes2 = create_nodes(count=params.n, prefix=2)
 
+#setup LANs
+for i in range (0, params.node_count):
+    LAN = request.LAN("LAN")
+    LAN.addInterface(routers[1].addInterface())
+    if nodes[i] is not None:
+        LAN.addInterface(node.addInterface())
 
 # setup the first LAN
-LAN1 = request.LAN("LAN1")
-LAN1.addInterface(routers[1].addInterface())
-for node in nodes1:
-    if node is not None:
-        LAN1.addInterface(node.addInterface())
+#LAN1 = request.LAN("LAN1")
+#LAN1.addInterface(routers[1].addInterface())
+#for node in nodes1:
+    #if node is not None:
+        #LAN1.addInterface(node.addInterface())
 
 # setup the second LAN
 #AN2 = request.LAN("LAN2")
@@ -127,7 +139,8 @@ for node in nodes1:
         #LAN2.addInterface(node.addInterface())
 
 # setup a link between routerss
-#request.Link(members=[routers[1], routers[2]])
+if params.router_count > 2:
+    request.Link(members=[routers[1], routers[2]])
 
 # output request
 pc.printRequestRSpec(request)
