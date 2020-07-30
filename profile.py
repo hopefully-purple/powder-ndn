@@ -87,21 +87,26 @@ def create_routers(instantiateOn='pnode', cores=4, ram=8):
         routers.append(mkVM('router' + str(i), GLOBALS.UBUNTU18_IMG, instantiateOn=instantiateOn, cores=cores, ram=ram))
 
     # run alternating install scripts on each vm to install software
-    num = 0
-    for router in routers:
-        if router is not None and num < params.router_count:
-            if num == 0:
-                router.addService(pg.Execute(shell="sh", command="chmod +x /local/repository/install_scripts/install1.sh"))
-                router.addService(pg.Execute(shell="sh", command="/local/repository/install_scripts/install1.sh"))
+    if params.router_count == 1:
+        if routers[1] is not None: 
+            router.addService(pg.Execute(shell="sh", command="chmod +x /local/repository/install_scripts/install1.sh"))
+            router.addService(pg.Execute(shell="sh", command="/local/repository/install_scripts/install1.sh"))
+    else:
+        num = 0    
+        for router in routers:
+            if router is not None and num < params.router_count:
+                if num == 0:
+                    router.addService(pg.Execute(shell="sh", command="chmod +x /local/repository/install_scripts/install1.sh"))
+                    router.addService(pg.Execute(shell="sh", command="/local/repository/install_scripts/install1.sh"))
                 
-                #router.addService(pg.Execute(shell="sh", command="chmod +x /local/repository/install_scripts/install1.sh"))
-                #router.addService(pg.Execute(shell="sh", command="/local/repository/install_scripts/install1.sh"))
-                num += 1
-            else:
-                router.addService(pg.Execute(shell="sh", command="chmod +x /local/repository/install2.sh"))
-                router.addService(pg.Execute(shell="sh", command="/local/repository/install2.sh"))
+                    #router.addService(pg.Execute(shell="sh", command="chmod +x /local/repository/install_scripts/install1.sh"))
+                    #router.addService(pg.Execute(shell="sh", command="/local/repository/install_scripts/install1.sh"))
+                    num += 1
+                else:
+                    router.addService(pg.Execute(shell="sh", command="chmod +x /local/repository/install2.sh"))
+                    router.addService(pg.Execute(shell="sh", command="/local/repository/install2.sh"))
 
-                num += 1
+                    num += 1
 
     return routers
 
