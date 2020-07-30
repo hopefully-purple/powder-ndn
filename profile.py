@@ -84,7 +84,7 @@ def create_routers(instantiateOn='pnode', cores=4, ram=8):
 
     # create each VM
     for i in range(1, 3):
-        routers.append(mkVM('router' + str(1), GLOBALS.UBUNTU18_IMG, instantiateOn=instantiateOn, cores=cores, ram=ram))
+        routers.append(mkVM('router' + str(i), GLOBALS.UBUNTU18_IMG, instantiateOn=instantiateOn, cores=cores, ram=ram))
 
     # run alternating install scripts on each vm to install software
     odd_router = True
@@ -138,8 +138,8 @@ for node in nodes:
     #if node is not None:
         #LAN2.addInterface(node.addInterface())
 
-# setup a link between routerss
-if params.router_count > 2:
+# setup a link between routers
+if params.router_count == 2:
     request.Link(members=[routers[1], routers[2]])
 
 # output request
