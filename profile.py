@@ -19,15 +19,15 @@ class GLOBALS(object):
 
 
 # define network parameters
-portal.context.defineParameter("node_count", "Client Nodes", portal.ParameterType.INTEGER, 2)
+portal.context.defineParameter("node_count", "Client Nodes", portal.ParameterType.INTEGER, 1)
 portal.context.defineParameter("router_count", "Routers", portal.ParameterType.INTEGER, 1)
 
 # retrieve the values the user specifies during instantiation
 params = portal.context.bindParameters()
 
 #  check parameter validity
-if params.node_count < 1 or params.node_count > 3:
-    portal.context.reportError(portal.ParameterError("You must choose at least 1 and no more than 3 nodes."))
+if params.node_count < 1 or params.node_count > 4:
+    portal.context.reportError(portal.ParameterError("You must choose at least 1 and no more than 4 nodes."))
 
 #  check parameter validity
 if params.router_count < 1 or params.router_count > 3:
@@ -49,7 +49,7 @@ def mkVM(name, image, instantiateOn, cores, ram):
     return node
 
 
-def create_nodes(count=2, prefix=1, instantiateOn='pnode', cores=2, ram=4):
+def create_nodes(count=1, prefix=1, instantiateOn='pnode', cores=2, ram=4):
     """Allocates and runs an install script on a specified number of VM nodes
 
     Returns a list of nodes.
