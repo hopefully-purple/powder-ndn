@@ -19,7 +19,7 @@ class GLOBALS(object):
 
 
 # define network parameters
-portal.context.defineParameter("node_count", "Nodes per LAN", portal.ParameterType.INTEGER, 2)
+portal.context.defineParameter("node_count", "Client Nodes", portal.ParameterType.INTEGER, 2)
 portal.context.defineParameter("router_count", "Routers", portal.ParameterType.INTEGER, 1)
 
 # retrieve the values the user specifies during instantiation
