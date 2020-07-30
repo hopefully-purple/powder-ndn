@@ -6,7 +6,7 @@ import re
 import random
 import os
 import string
-from make_requests import MakeRequests
+from code.make_requests import MakeRequests
 from datetime import datetime
 
 class Control():
@@ -22,7 +22,7 @@ class Control():
         print("Reading File")
 
         # Open nlsr.conf and read in specified number of words
-        with open('whole_dict.txt', 'r') as input_file:
+        with open('code/whole_dict.txt', 'r') as input_file:
             print("successfully opened file")
             num = 0
             for line in input_file:
@@ -84,7 +84,6 @@ class Control():
 
         #Give host script a chance
         time.sleep(1)
-        
         req_num = 0
 
         # Loop for the number of repetitions
@@ -104,7 +103,13 @@ class Control():
         """ ATTACK """
         make = MakeRequests()
 
-        self.total_reqs = 5000
+        self.total_reqs = 1700
+
+        for number in range(1,5):
+            print(f"{number}")
+            time.sleep(1)
+
+        print(datetime.now())
 
         #This will result in out.dat and in.dat population, as well as stats_file
         for i in range(1, self.total_reqs):
