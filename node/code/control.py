@@ -74,7 +74,7 @@ class Control():
         self.read_file()
         
         # Generate requests with list of strings
-        self.generate_request_strings("/ndn/")
+        self.generate_request_strings("/ndn/dictionary/")
 
         #Create new in.dat and out.dat file
         with open('data_collection/in.dat', 'w') as infile:
@@ -120,7 +120,7 @@ class Control():
         bad_list = []
         for i in range(0, self.total_reqs):
             randstring = self.generate_random(15)
-            badreq = "/ndn/skiing/" + randstring
+            badreq = "/ndn/dictionary/" + randstring
             bad_list.append(badreq)
 
 
