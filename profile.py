@@ -152,7 +152,7 @@ for i in range(1, params.node_count + 1):
 
 # setup a link between routers
 if params.router_count > 1:
-    for i in range(1, params.router_count + 1):
+    for i in range(1, params.router_count):
         request.Link(members=[routers[i], routers[i + 1]])
 
 # output request
