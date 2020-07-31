@@ -19,10 +19,10 @@ def run_bg(this_connection, cmd, sockname='dtach'):
 
 def create_faces():
     """Creates the relevant UDP faces between routers"""
-    connection['up-cl'].run('nfdc face create udp4://10.10.5.2')
-    connection['up-cl'].run('nfdc face create udp4://10.10.5.2')
-    connection['external-dn'].run('nfdc face create udp4://10.10.5.1')
-    connection['internal-dn'].run('nfdc face create udp4://10.10.5.1')
+    connection['up-cl'].run('nfdc face create udp4://10.10.2.2')
+    connection['up-cl'].run('nfdc face create udp4://10.10.2.2')
+    connection['external-dn'].run('nfdc face create udp4://10.10.2.1')
+    connection['internal-dn'].run('nfdc face create udp4://10.10.2.1')
 
 
 def start_nlsr():
