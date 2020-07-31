@@ -32,9 +32,15 @@ if (REQS > 30) {
 }
 set grid
 
+gstats = 'data_collection/gnustats.dat'
 set print 'data_collection/gnuplotstatistics.txt'
-stats 'data_collection/gnustats.dat' index 0 prefix "A"
+
+stats gstats index 0 prefix "A"
 unset print
 
+
 #Plot with math
-plot for [i=0:(STATS_blocks - 1)] 'data_collection/results.dat' index i w lines 
+plot for [i=0:(STATS_blocks - 1)] 'data_collection/results.dat' index i w lines
+
+
+

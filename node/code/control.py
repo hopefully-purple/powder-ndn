@@ -34,14 +34,14 @@ class Control():
                         break
         return 0
 
-    def generate_request_strings(self, prefix, inlist=self.list, outlist=self.requests):
+    def generate_request_strings(self, prefix): 
         """Takes the list of words and adds the prefix to them"""
 
-        for item in inlist:
+        for item in self.list:
             request = prefix + item
-            outlist.append(request)
+            self.requests.append(request)
 
-        print("Size of Request List: ", len(outlist))        
+        print("Size of Request List: ", len(self.requests))        
 
         return 0
 
@@ -106,16 +106,24 @@ class Control():
         self.total_reqs = 1700
 
         #Read file and populate requests with "/ndn/<whole_dict>"
-        self.read_file()
-        self.generate_request_strings("/ndn/")
+        #self.read_file()
+        #self.generate_request_strings("/ndn/")
 
         #For each prefix in requests, generate a random string, create "/ndn/<whole>/<rand>", add to bad_list
+        #bad_list = []
+        #for prefix in self.requests:
+            #randstring = self.generate_random(15)
+            #new_request = prefix + "/" + randstring
+            #bad_list.append(new_request)
+
+        #Create a badlist of strings with /ndn/skiing/<rand>
         bad_list = []
-        for prefix in self.requests:
+        for i in range(0, self.total_reqs):
             randstring = self.generate_random(15)
-            new_request = prefix + "/" + randstring
-            bad_list.append(new_request)
-         
+            badreq = "/ndn/skiing/" + randstring
+            bad_list.append(badreq)
+
+
         for number in range(1,5):
             print(f"{number}")
             time.sleep(1)
