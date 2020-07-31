@@ -10,5 +10,11 @@ def create_faces():
     os.system('nfdc face create udp4://10.10.2.1')
     os.system('nfdc face create udp4://10.10.2.2')
 
+def start_nlsr():
+    """Starts the NLSR routing daemon on all servers"""
+    os.system('nlsr -f ~/nlsr/nlsr.conf')
+
 create_faces()
+start_nlsr()
+
 
