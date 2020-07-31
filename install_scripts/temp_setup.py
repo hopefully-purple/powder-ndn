@@ -10,5 +10,5 @@ def create_faces():
     os.system('nfdc face create udp4://10.10.2.1')
     os.system('nfdc face create udp4://10.10.2.2')
 
-
+create_faces()
 
