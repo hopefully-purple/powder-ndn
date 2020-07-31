@@ -93,8 +93,8 @@ def create_routers(instantiateOn='pnode', cores=4, ram=8):
     elif params.router_count == 2:
         routers[1].addService(pg.Execute(shell="sh", command="chmod +x /local/repository/install_scripts/install1.sh"))
         routers[1].addService(pg.Execute(shell="sh", command="/local/repository/install_scripts/install1.sh"))
-        routers[2].addService(pg.Execute(shell="sh", command="chmod +x /local/repository/install2.sh"))
-        routers[2].addService(pg.Execute(shell="sh", command="/local/repository/install2.sh"))
+        routers[2].addService(pg.Execute(shell="sh", command="chmod +x /local/repository/install_scripts/install2.sh"))
+        routers[2].addService(pg.Execute(shell="sh", command="/local/repository/install_scripts/install2.sh"))
     
     return routers
 
