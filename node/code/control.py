@@ -34,14 +34,14 @@ class Control():
                         break
         return 0
 
-    def generate_request_strings(self):
+    def generate_request_strings(self, prefix, inlist=self.list, outlist=self.requests):
         """Takes the list of words and adds the prefix to them"""
 
-        for item in self.list:
-            request = "/ndn/" + item
-            self.requests.append(request)
+        for item in inlist:
+            request = prefix + item
+            outlist.append(request)
 
-        print("Size of Request List: ", len(self.requests))        
+        print("Size of Request List: ", len(outlist))        
 
         return 0
 
@@ -74,7 +74,7 @@ class Control():
         self.read_file()
         
         # Generate requests with list of strings
-        self.generate_request_strings()
+        self.generate_request_strings("/ndn/")
 
         #Create new in.dat and out.dat file
         with open('data_collection/in.dat', 'w') as infile:
@@ -105,6 +105,17 @@ class Control():
 
         self.total_reqs = 1700
 
+        #Read file and populate requests with "/ndn/<whole_dict>"
+        self.read_file()
+        self.generate_request_strings("/ndn/")
+
+        #For each prefix in requests, generate a random string, create "/ndn/<whole>/<rand>", add to bad_list
+        bad_list = []
+        for prefix in self.requests:
+            randstring = self.generate_random(15)
+            new_request = prefix + "/" + randstring
+            bad_list.append(new_request)
+         
         for number in range(1,5):
             print(f"{number}")
             time.sleep(1)
@@ -112,17 +123,14 @@ class Control():
         print(datetime.now())
 
         #This will result in out.dat and in.dat population, as well as stats_file
-        for i in range(1, self.total_reqs):
-            if self.total_reqs % i == 0:
-                print(f"{i} repetition {datetime.now()}")
+        i = 0
+        for badreq in bad_list:
+            i += 1
+            if i % 100 == 0:
+                print(f"{i} request {datetime.now()}")
                 with open ('data_collection/terminal_output.txt', 'w') as term:
-                    term.write(f"{i} repetition {datetime.now()}\n")
-            randstring = self.generate_random(15)
-            make.run_reqs(randstring)
-
-
-        
-
+                    term.write(f"{i} request {datetime.now()}\n")
+            make.run_reqs(badreq)
 
 
 
