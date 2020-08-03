@@ -67,6 +67,12 @@ def victim(ctrl):
 
 def attacker(ctrl):
     print("Attack protocol will populate the same files as a regular use case.")
+
+    ready = input("Hit enter when ready . . .")
+    
+    if ready != "":
+        return ""
+    
     with open('data_collection/stats_file.txt', 'w') as stats:
         stats.write("ATTACK RUN 5,000")
 
