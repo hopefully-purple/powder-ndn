@@ -50,6 +50,11 @@ def questions(ctrl):
     
 
 def victim(ctrl):
+    ready = input("Hit enter when ready . . .")
+    
+    if ready != "":
+        return ""
+
     print("Beginning victim usage")
 
     ctrl.total_requests = 100
