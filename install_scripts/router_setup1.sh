@@ -54,11 +54,32 @@ fi
 echo "Change Latency? if yes, enter the ms.(#ms/n): "
 read latency
 
-if [ "$latency" != "n" ]; then
+change() {
+
 	ifconfig
 	echo "What is the eth?(format: eth#) "
 	read eth
-	sudo tc qdisc add dev $eth root netem delay $latency
+
+        #How many mbits?
+        echo "(Leave blank if no bandwidth to change) How many bits for rate?(format: #mbit) "
+        read mbit
+
+        #How many kbits?
+        echo "(Leave blank if no bandwidth to change) How many bits for burst?(format: #kbit) "
+        read kbit
+
+	if [ "$mbit" != "" ]; then
+        	#limit the bandwidth
+        	echo "Limiting . . . "
+        	sudo tc qdisc add dev $eth root tbf rate $mbit burst $kbit latency $latency
+	else
+		sudo tc qdisc add dev $eth root netem delay $latency
+	fi
+
+}
+
+if [ "$latency" != "n" ]; then
+	change()
 	sudo tc qdisc show dev $eth
 fi
 
