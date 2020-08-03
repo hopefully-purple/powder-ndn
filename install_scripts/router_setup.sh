@@ -37,8 +37,14 @@ nfdset() {
 	read -p "Test connection? Yes, wait until ready, otherwise no.(y/n): " testq
 
 	if [ $testq == "y" ]; then
-		echo "On other router, execute ndnpeek -p /ndn/dictionary. Should get testing in return"
-		echo "testing" | ndnpoke /ndn/dictionary
+		read -p "Host or request?(h/r): " action
+		if [ $action == "h" ]; then
+			echo "On other router, execute ndnpeek -p /ndn/dictionary. Should get testing in return"
+			echo "testing" | ndnpoke /ndn/dictionary
+		else:
+			echo "Executing ndnpeek -p /ndn/dictionary"
+			ndnpeek -p /ndn/dictionary
+		fi
 	fi
 }
 
@@ -85,8 +91,10 @@ elif [ "$lat" == "r" ]; then
 	sudo tc qdisc del dev $eth root
 fi
 
-read -p "Input eth one more time: " eth
-sudo tc qdisc show dev $eth
+if [ $lat == "y" ]; then
+	read -p "Input eth one more time: " eth
+	sudo tc qdisc show dev $eth
+fi
 
 echo "Done!"
 
