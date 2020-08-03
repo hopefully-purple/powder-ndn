@@ -38,6 +38,7 @@ mkdir -p ~/nlsr/log/
 # copy the appropriate nlsr configuration file to the nlsr directory
 cp /local/repository/install_scripts/nlsr1.conf ~/nlsr/nlsr.conf
 cp /local/repository/install_scripts/temp_setup.py ~/
+cp /local/repository/install_scripts/network_setup.py ~/
 
 # copy a .vimrc on each VM (provides useful remappings)
 cp /local/repository/.vimrc ~/
