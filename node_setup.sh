@@ -46,7 +46,7 @@ elif [ "$action" == "c" ]; then
 		sudo tc qdisc show dev $eth
 	elif [ "$choice" == "b" ]; then
 		changeband
-		sudo tc disc show dev $eth
+		sudo tc qdisc show dev $eth
 	fi
 fi
 
