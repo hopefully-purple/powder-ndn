@@ -18,6 +18,7 @@ sudo pip3 install python-dateutil
 cp -R /local/repository/node/code ~/
 cp -R /local/repository/node/data_collection ~/
 cp /local/repository/begin_testing.py ~/
+cp /local/repository/node_setup.sh ~/
 
 # copy the client code to the user's home directory
 #cp /local/repository/request_data.py ~/
