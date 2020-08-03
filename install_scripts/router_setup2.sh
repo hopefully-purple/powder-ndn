@@ -1,7 +1,7 @@
 #!/bin/bash
 
-#This script is for router 1. 
-#This sets up the connections between it and router 2.
+#This script is for router 2. 
+#This sets up the connections between it and router 1.
 
 
 #Arguments: $1 = udp4 address to connect to, $2 is the eth
