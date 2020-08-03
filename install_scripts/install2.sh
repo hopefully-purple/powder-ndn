@@ -37,7 +37,7 @@ mkdir -p ~/nlsr/log/
 
 # copy the appropriate nlsr configuration file to the nlsr directory
 cp /local/repository/install_scripts/nlsr2.conf ~/nlsr/nlsr.conf
-cp /local/repository/install_scripts/router_setup2.sh ~/
+cp /local/repository/install_scripts/router_setup.sh ~/
 
 # copy a .vimrc on each VM (provides useful remappings)
 cp /local/repository/.vimrc ~/
