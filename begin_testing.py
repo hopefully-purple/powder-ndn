@@ -58,7 +58,7 @@ def victim(ctrl):
     print("Beginning victim usage")
 
     ctrl.total_requests = 100
-    ctrl.reps = 9
+    ctrl.reps = 7
 
     with open('data_collection/stats_file.txt', 'w') as stats:
         stats.write("A clean slate!\n") #Eventually print out the settings
