@@ -30,7 +30,11 @@ class MakeRequests():
         Interest.setDefaultCanBePrefix(True)
 
         # set up a face that connects to the remote forwarder
-        udp_connection_info = UdpTransport.ConnectionInfo("10.10.1.1", 6363)
+        #udp_connection_info = UdpTransport.ConnectionInfo("10.10.1.1", 6363)
+        #udp_connection_info = UdpTransport.ConnectionInfo("10.10.2.1", 6363)
+        #udp_connection_info = UdpTransport.ConnectionInfo("10.10.3.1", 6363)
+        #udp_connection_info = UdpTransport.ConnectionInfo("10.10.4.1", 6363)
+        #udp_connection_info = UdpTransport.ConnectionInfo("10.10.5.1", 6363)
         udp_transport = UdpTransport()
         face = Face(udp_transport, udp_connection_info)
 
