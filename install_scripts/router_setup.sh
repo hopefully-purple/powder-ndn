@@ -21,8 +21,10 @@ nfdset() {
 
 	#Create route
 	echo "Creating route with face id $faceid and prefix /ndn/dictionary"
-
 	nfdc route add /ndn/dictionary $faceid
+
+	echo "Creating route with face id $faceid and prefix /ndn/attack"
+	nfdc route add /ndn/attack $faceid
 
 	#Turn off caching?
 	read -p "Turn off caching?(y/n): " caching
