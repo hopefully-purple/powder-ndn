@@ -74,7 +74,7 @@ def attacker(ctrl):
         return ""
     
     with open('data_collection/stats_file.txt', 'w') as stats:
-        stats.write("ATTACK RUN 5,000")
+        stats.write("ATTACK RUN 1,7000")
 
     print("Beginning attack protocol.")
     print(datetime.now())
