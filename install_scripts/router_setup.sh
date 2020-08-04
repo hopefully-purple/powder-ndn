@@ -17,14 +17,20 @@ nfdset() {
 	nfdc face create udp4://$ADDR
 
 	#Ask for faceid
-	read -p "What is the face id? " faceid
+	#read -p "What is the face id? " faceid
 
 	#Create route
-	echo "Creating route with face id $faceid and prefix /ndn/dictionary"
-	nfdc route add /ndn/dictionary $faceid
+	#echo "Creating route with face id $faceid and prefix /ndn/dictionary"
+	#nfdc route add /ndn/dictionary $faceid
+	
+	echo "Creating route with prefix /ndn/dictionary to nexthop $ADDR"
+	nfdc route add prefix /ndn/dictionary nexthop udp4://$ADDR
+	
+	echo "Creating route with prefix /ndn/attack to nexthop $ADDR"
+	nfdc route add prefix /ndn/attack nexthop udp4://$ADDR
 
-	echo "Creating route with face id $faceid and prefix /ndn/attack"
-	nfdc route add /ndn/attack $faceid
+	#echo "Creating route with face id $faceid and prefix /ndn/attack"
+	#nfdc route add /ndn/attack $faceid
 
 	#Turn off caching?
 	read -p "Turn off caching?(y/n): " caching
