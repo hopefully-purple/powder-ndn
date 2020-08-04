@@ -26,7 +26,7 @@ portal.context.defineParameter("router_count", "Routers", portal.ParameterType.I
 params = portal.context.bindParameters()
 
 #  check parameter validity
-if params.node_count < 1 or params.node_count > 4:
+if params.node_count < 1 or params.node_count > 30:
     portal.context.reportError(portal.ParameterError("You must choose at least 1 and no more than 4 nodes."))
 
 #  check parameter validity
