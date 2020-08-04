@@ -35,6 +35,9 @@ def host(data_list):
 
 
 def main():
+
+	#begin ndndump
+	os.system("sudo ndndump -i any -v > ndndump.txt &")
 	
 	#clarify what files are being used for what.
 	print("This script will host random data under random prefixes from whole_dict.txt") #will move on to dictionary when ready for hardcore
