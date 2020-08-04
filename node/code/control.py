@@ -95,6 +95,7 @@ class Control():
             for request in self.requests:
                 req_num += 1
                 self.send_request(request, i, req_num)
+                #time.sleep(0.02)
             req_num = 0
 
         return start
@@ -105,22 +106,12 @@ class Control():
 
         self.total_reqs = 1700
 
-        #Read file and populate requests with "/ndn/<whole_dict>"
-        #self.read_file()
-        #self.generate_request_strings("/ndn/")
 
-        #For each prefix in requests, generate a random string, create "/ndn/<whole>/<rand>", add to bad_list
-        #bad_list = []
-        #for prefix in self.requests:
-            #randstring = self.generate_random(15)
-            #new_request = prefix + "/" + randstring
-            #bad_list.append(new_request)
-
-        #Create a badlist of strings with /ndn/skiing/<rand>
+        #Create a badlist of strings with /ndn/attack/<rand>
         bad_list = []
         for i in range(0, self.total_reqs):
             randstring = self.generate_random(15)
-            badreq = "/ndn/dictionary/" + randstring
+            badreq = "/ndn/attack/" + randstring
             bad_list.append(badreq)
 
 
