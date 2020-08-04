@@ -7,9 +7,12 @@ nfdset() {
 	read -p "What is the ip you want to connect to? " ADDR
 
 	#First step, make sure nfd is running
-	echo "Restarting nfd"
-	nfd-stop
-	nfd-start
+	read -p "Restart nfd?(y/n): " restart
+	if [ $restart == "y" ];l then
+		echo "Restarting nfd"
+		nfd-stop
+		nfd-start
+	fi
 
 	#Create face
 	echo "Creating face, connecting to $ADDR"
@@ -45,14 +48,9 @@ nfdset() {
 	read -p "Test connection? Yes, wait until ready, otherwise no.(y/n): " testq
 
 	if [ $testq == "y" ]; then
-		read -p "Host or request?(h/r): " action
-		if [ $action == "h" ]; then
-			echo "On other router, execute ndnpeek -p /ndn/dictionary. Should get testing in return"
-			echo "testing" | ndnpoke /ndn/dictionary
-		else:
-			echo "Executing ndnpeek -p /ndn/dictionary"
-			ndnpeek -p /ndn/dictionary
-		fi
+		echo "Pinging 4 times to $ADDR under dictionary and attack prefixes"
+		ndnping -c 4 -t /ndn/dictionary
+		ndnping -c 4 -t /ndn/attack
 	fi
 }
 
