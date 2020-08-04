@@ -46,6 +46,10 @@ def main():
 	requests = input("How many satisfiable requests per repetition?: ")
 	requests = int(requests)
 
+	#Ask for timer duration
+	duration = input("How long should the timer run?: ")
+	duration = int(duration)
+
 	#Prep list
 	req_list = read_file(requests)
 
@@ -61,7 +65,7 @@ def main():
 		else:
 			print("GO!\n")
 	#Start the test
-	os.system("./code/run_status_show.sh &")
+	os.system(f"./code/run_status_show.sh {duration} &")
 	print("Just called run")
 		
 	#call host algorithm

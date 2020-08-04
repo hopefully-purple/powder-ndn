@@ -5,7 +5,7 @@
 #User must specify the lengths.
 
 interval=5
-duration=1
+duration=$1
 
 echo "This is the show status output for a unrelated timer, to be run during experiments." > data_collection/timed_nfdc_status.txt
 echo "Every $interval seconds for $duration minutes" >> data_collection/timed_nfdc_status.txt
