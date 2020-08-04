@@ -27,7 +27,7 @@ def host(data_list):
 	os.system("echo "" > data_collection/echo_times.txt")
 
 	for data in data_list:
-		prefix = "/ndn/" + data
+		prefix = "/ndn/dictionary/" + data
 		os.system(f"echo {data} | ndnpoke {prefix} &")
 		time = datetime.now()
 		with open('data_collection/echo_times.txt', 'a') as times:
@@ -37,7 +37,7 @@ def host(data_list):
 def main():
 
 	#begin ndndump
-	os.system("sudo ndndump -i any -v > ndndump.txt &")
+	os.system("sudo ndndump -i any -v > data_collection/ndndump.txt &")
 	
 	#clarify what files are being used for what.
 	print("This script will host random data under random prefixes from whole_dict.txt") #will move on to dictionary when ready for hardcore
