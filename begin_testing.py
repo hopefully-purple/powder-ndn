@@ -85,6 +85,8 @@ def attacker(ctrl):
     print(datetime.now())
 
 def main():
+
+    print("Ctrl C if you haven't updated the make_request ip address!")
     
     ctrl = Control(100, 15)
 
