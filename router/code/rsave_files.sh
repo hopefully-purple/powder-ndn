@@ -27,3 +27,7 @@ sudo mv data_collection/timed_nfdc_"$1".txt $DIR
 cp data_collection/timed_data.dat data_collection/timed_data_"$1".dat
 sudo mv data_collection/timed_data_"$1".dat $DIR
 
+cp data_collection/ndndump.txt data_collection/ndndump_"$1".txt
+sudo mv data_collection/ndndump_"$1".txt $DIR
+
+
