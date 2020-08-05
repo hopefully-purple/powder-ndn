@@ -38,7 +38,7 @@ read -p "Change, display active, or remove?(c/d/r): " action
 if [ "$action" == "d" ]; then
 	sudo tc qdisc show dev $eth
 elif [ "$action" == "r" ]; then
-	sudo tc qdisc del dev $eth
+	sudo tc qdisc del dev $eth root
 elif [ "$action" == "c" ]; then
 	read -p "Just latency or bandwidth as well?(l/b): " choice
 	if [ "$choice" == "l" ]; then

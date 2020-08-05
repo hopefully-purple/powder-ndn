@@ -8,7 +8,7 @@ nfdset() {
 
 	#First step, make sure nfd is running
 	read -p "Restart nfd?(y/n): " restart
-	if [ $restart == "y" ];l then
+	if [ $restart == "y" ]; then
 		echo "Restarting nfd"
 		nfd-stop
 		nfd-start
@@ -86,18 +86,23 @@ if [ "$setnfd" == "y" ]; then
 fi
 
 #Change latency?
-read -p "Change Latency? Remove all?(y/n/r): " lat
+read -p "Change? Display? Remove?(c/d/r): " lat
 
-if [ "$lat" == "y" ]; then
+if [ "$lat" == "c" ]; then
 	change
 elif [ "$lat" == "r" ]; then
 	ifconfig
 	read -p "What is the eth?(format: eth#) " eth
 	
 	sudo tc qdisc del dev $eth root
+elif [ "$lat" == "d" ]; then
+	ifconfig
+	read -p "What is the eht?(format: eth#) " eth
+
+	sudo tc qdisc show dev $eth
 fi
 
-if [ $lat == "y" ]; then
+if [ $lat == "c" ]; then
 	read -p "Input eth one more time: " eth
 	sudo tc qdisc show dev $eth
 fi
