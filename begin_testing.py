@@ -86,8 +86,10 @@ def attacker(ctrl):
 
 def main():
 
-    print("Ctrl C if you haven't updated the make_request ip address!")
-    
+    print("___________________")
+    print("********Ctrl C if you haven't updated the make_request ip address!******")
+    print("^^^^^^^^^^^^^^^^^^^^^^^^^^^")    
+
     ctrl = Control(100, 15)
 
     # Start by asking the user set up questions
