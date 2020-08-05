@@ -111,7 +111,7 @@ class Control():
         bad_list = []
         for i in range(0, self.total_reqs):
             randstring = self.generate_random(15)
-            badreq = "/ndn/attack/" + randstring
+            badreq = "/ndn/dictionary/" + randstring
             bad_list.append(badreq)
 
 
