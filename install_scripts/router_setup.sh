@@ -396,7 +396,7 @@ change() {
 }
 
 #Automation?
-reap -p "Automation?(4g1/4g2/4g3/5g1/5g2/5g3/n): " auto
+read -p "Automation?(4g1/4g2/4g3/5g1/5g2/5g3/n): " auto
 
 if [ "$auto" == "4g1" ]; then
 	4gr1
