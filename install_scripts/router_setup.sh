@@ -102,7 +102,7 @@ elif [ "$lat" == "d" ]; then
 	sudo tc qdisc show dev $eth
 fi
 
-if [ $lat == "c" ]; then
+if [ "$lat" == "c" ]; then
 	read -p "Input eth one more time: " eth
 	sudo tc qdisc show dev $eth
 fi
