@@ -73,6 +73,7 @@ change() {
 	read -p "Restart nfd?(y/n): " restart
 	if [ $restart == "y" ]; then
 		echo "Restarting nfd"
+		#nfdc face destroy udp4://10.10.6.2
 		nfd-stop
 		nfd-start
 	fi
