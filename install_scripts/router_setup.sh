@@ -221,7 +221,7 @@ change() {
 	echo "Creating route with prefix /ndn/attack to nexthop $ADDR"
 	nfdc route add prefix /ndn/attack nexthop udp4://$ADDR
 	
-	nfdc cs config serve off
+	nfdc cs config serve on
 		
 	eth="eth1"
 	latency="3.83333333ms"
@@ -384,7 +384,7 @@ change() {
 	echo "Creating route with prefix /ndn/attack to nexthop $ADDR"
 	nfdc route add prefix /ndn/attack nexthop udp4://$ADDR
 	
-	nfdc cs config serve off
+	nfdc cs config serve on
 		
 	eth="eth1"
 	latency="0.16666667ms"
