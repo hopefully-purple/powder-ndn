@@ -121,6 +121,67 @@ change() {
 	fi
 
 	#-------------------
+	echo "Router 3"
+	ADDR=10.10.7.2
+	nfdc face create udp4://$ADDR
+
+	echo "Creating route with prefix /ndn/dictionary to nexthop $ADDR"
+	nfdc route add prefix /ndn/dictionary nexthop udp4://$ADDR
+	
+	echo "Creating route with prefix /ndn/attack to nexthop $ADDR"
+	nfdc route add prefix /ndn/attack nexthop udp4://$ADDR
+	
+	nfdc cs config serve off
+		
+	eth="eth2"
+	latency="3.83333333ms"
+
+	sudo tc qdisc del dev $eth root
+	sudo tc qdisc add dev $eth root netem delay $latency
+	sudo tc qdisc show dev $eth
+	#-------------------
+
+	#-------------------
+	echo "Node 2"
+	eth="eth3"
+	latency="7.66666667ms"
+
+	sudo tc qdisc del dev $eth root
+	sudo tc qdisc add dev $eth root netem delay $latency
+	sudo tc qdisc show dev $eth
+	#-------------------
+
+	#-------------------
+	echo "Node 3"
+	eth="eth4"
+	latency="7.66666667ms"
+
+	sudo tc qdisc del dev $eth root
+	sudo tc qdisc add dev $eth root netem delay $latency
+	sudo tc qdisc show dev $eth
+	#-------------------
+
+	#-------------------
+	echo "Node 4"
+	eth="eth5"
+	latency="7.66666667ms"
+
+	sudo tc qdisc del dev $eth root
+	sudo tc qdisc add dev $eth root netem delay $latency
+	sudo tc qdisc show dev $eth
+	#-------------------
+
+	#-------------------
+	echo "Node 5"
+	eth="eth6"
+	latency="7.66666667ms"
+
+	sudo tc qdisc del dev $eth root
+	sudo tc qdisc add dev $eth root netem delay $latency
+	sudo tc qdisc show dev $eth
+	#-------------------
+
+	#-------------------
 	echo "Router 1"
 	ADDR=10.10.6.1
 	nfdc face create udp4://$ADDR
@@ -134,67 +195,6 @@ change() {
 	nfdc cs config serve off
 		
 	eth="eth1"
-	latency="3.83333333ms"
-
-	sudo tc qdisc del dev $eth root
-	sudo tc qdisc add dev $eth root netem delay $latency
-	sudo tc qdisc show dev $eth
-	#-------------------
-
-	#-------------------
-	echo "Node 2"
-	eth="eth1"
-	latency="7.66666667ms"
-
-	sudo tc qdisc del dev $eth root
-	sudo tc qdisc add dev $eth root netem delay $latency
-	sudo tc qdisc show dev $eth
-	#-------------------
-
-	#-------------------
-	echo "Node 3"
-	eth="eth2"
-	latency="7.66666667ms"
-
-	sudo tc qdisc del dev $eth root
-	sudo tc qdisc add dev $eth root netem delay $latency
-	sudo tc qdisc show dev $eth
-	#-------------------
-
-	#-------------------
-	echo "Node 4"
-	eth="eth3"
-	latency="7.66666667ms"
-
-	sudo tc qdisc del dev $eth root
-	sudo tc qdisc add dev $eth root netem delay $latency
-	sudo tc qdisc show dev $eth
-	#-------------------
-
-	#-------------------
-	echo "Node 5"
-	eth="eth4"
-	latency="7.66666667ms"
-
-	sudo tc qdisc del dev $eth root
-	sudo tc qdisc add dev $eth root netem delay $latency
-	sudo tc qdisc show dev $eth
-	#-------------------
-
-	#-------------------
-	echo "Router 3"
-	ADDR=10.10.7.2
-	nfdc face create udp4://$ADDR
-
-	echo "Creating route with prefix /ndn/dictionary to nexthop $ADDR"
-	nfdc route add prefix /ndn/dictionary nexthop udp4://$ADDR
-	
-	echo "Creating route with prefix /ndn/attack to nexthop $ADDR"
-	nfdc route add prefix /ndn/attack nexthop udp4://$ADDR
-	
-	nfdc cs config serve off
-		
-	eth="eth6"
 	latency="3.83333333ms"
 
 	sudo tc qdisc del dev $eth root
@@ -285,6 +285,67 @@ change() {
 	fi
 
 	#-------------------
+	echo "Router 3"
+	ADDR=10.10.7.2
+	nfdc face create udp4://$ADDR
+
+	echo "Creating route with prefix /ndn/dictionary to nexthop $ADDR"
+	nfdc route add prefix /ndn/dictionary nexthop udp4://$ADDR
+	
+	echo "Creating route with prefix /ndn/attack to nexthop $ADDR"
+	nfdc route add prefix /ndn/attack nexthop udp4://$ADDR
+	
+	nfdc cs config serve off
+		
+	eth="eth2"
+	latency="0.16666667ms"
+
+	sudo tc qdisc del dev $eth root
+	sudo tc qdisc add dev $eth root netem delay $latency
+	sudo tc qdisc show dev $eth
+	#-------------------
+
+	#-------------------
+	echo "Node 2"
+	eth="eth3"
+	latency="0.33333333ms"
+
+	sudo tc qdisc del dev $eth root
+	sudo tc qdisc add dev $eth root netem delay $latency
+	sudo tc qdisc show dev $eth
+	#-------------------
+
+	#-------------------
+	echo "Node 3"
+	eth="eth4"
+	latency="0.33333333ms"
+
+	sudo tc qdisc del dev $eth root
+	sudo tc qdisc add dev $eth root netem delay $latency
+	sudo tc qdisc show dev $eth
+	#-------------------
+
+	#-------------------
+	echo "Node 4"
+	eth="eth5"
+	latency="0.33333333ms"
+
+	sudo tc qdisc del dev $eth root
+	sudo tc qdisc add dev $eth root netem delay $latency
+	sudo tc qdisc show dev $eth
+	#-------------------
+
+	#-------------------
+	echo "Node 5"
+	eth="eth6"
+	latency="0.33333333ms"
+
+	sudo tc qdisc del dev $eth root
+	sudo tc qdisc add dev $eth root netem delay $latency
+	sudo tc qdisc show dev $eth
+	#-------------------
+
+	#-------------------
 	echo "Router 1"
 	ADDR=10.10.6.1
 	nfdc face create udp4://$ADDR
@@ -298,67 +359,6 @@ change() {
 	nfdc cs config serve off
 		
 	eth="eth1"
-	latency="0.16666667ms"
-
-	sudo tc qdisc del dev $eth root
-	sudo tc qdisc add dev $eth root netem delay $latency
-	sudo tc qdisc show dev $eth
-	#-------------------
-
-	#-------------------
-	echo "Node 2"
-	eth="eth1"
-	latency="0.33333333ms"
-
-	sudo tc qdisc del dev $eth root
-	sudo tc qdisc add dev $eth root netem delay $latency
-	sudo tc qdisc show dev $eth
-	#-------------------
-
-	#-------------------
-	echo "Node 3"
-	eth="eth2"
-	latency="0.33333333ms"
-
-	sudo tc qdisc del dev $eth root
-	sudo tc qdisc add dev $eth root netem delay $latency
-	sudo tc qdisc show dev $eth
-	#-------------------
-
-	#-------------------
-	echo "Node 4"
-	eth="eth3"
-	latency="0.33333333ms"
-
-	sudo tc qdisc del dev $eth root
-	sudo tc qdisc add dev $eth root netem delay $latency
-	sudo tc qdisc show dev $eth
-	#-------------------
-
-	#-------------------
-	echo "Node 5"
-	eth="eth4"
-	latency="0.33333333"
-
-	sudo tc qdisc del dev $eth root
-	sudo tc qdisc add dev $eth root netem delay $latency
-	sudo tc qdisc show dev $eth
-	#-------------------
-
-	#-------------------
-	echo "Router 3"
-	ADDR=10.10.7.2
-	nfdc face create udp4://$ADDR
-
-	echo "Creating route with prefix /ndn/dictionary to nexthop $ADDR"
-	nfdc route add prefix /ndn/dictionary nexthop udp4://$ADDR
-	
-	echo "Creating route with prefix /ndn/attack to nexthop $ADDR"
-	nfdc route add prefix /ndn/attack nexthop udp4://$ADDR
-	
-	nfdc cs config serve off
-		
-	eth="eth6"
 	latency="0.16666667ms"
 
 	sudo tc qdisc del dev $eth root
