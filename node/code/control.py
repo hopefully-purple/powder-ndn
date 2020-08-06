@@ -54,7 +54,6 @@ class Control():
             nl_req = request + "\n"
             output_file.write(nl_req)
        
-        make = MakeRequests()
         make.run_reqs(request)
 
         return 0
@@ -97,8 +96,8 @@ class Control():
             for request in self.requests:
                 req_num += 1
                 self.send_request(make, request, i, req_num)
-                #time.sleep(0.02)
             req_num = 0
+            time.sleep(1)
 
         return start
 
