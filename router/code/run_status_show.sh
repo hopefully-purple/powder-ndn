@@ -100,13 +100,13 @@ edit(){
 
 edit
 
-read -p "Plot?(y/n): " plot
+#read -p "Plot?(y/n): " plot
 
-if [ "$plot" == "y" ]; then
-	echo "PLOTTING . . . "
-	gnuplot -persist -c "code/analyze_data.gnuplot" "$interval seconds for $duration minutes" $interval
-	display data_collection/plot_timed_data.png &
-fi
+#if [ "$plot" == "y" ]; then
+echo "PLOTTING . . . "
+gnuplot -persist -c "code/analyze_data.gnuplot" "$interval seconds for $duration minutes" $interval
+display data_collection/plot_timed_data.png &
+#fi
 
 
 echo "Finished"
