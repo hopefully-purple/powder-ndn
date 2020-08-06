@@ -45,7 +45,7 @@ class Control():
 
         return 0
 
-    def send_request(self, request, i, req_num):
+    def send_request(self, make, request, i, req_num):
         """Uses PyNDN to send a single request"""
 
         i += 1
@@ -86,6 +86,8 @@ class Control():
         time.sleep(1)
         req_num = 0
 
+        make = MakeRequests()
+
         # Loop for the number of repetitions
         print("Sending requests")
         start = datetime.now()
@@ -94,7 +96,7 @@ class Control():
             # Send specified number of requests
             for request in self.requests:
                 req_num += 1
-                self.send_request(request, i, req_num)
+                self.send_request(make, request, i, req_num)
                 #time.sleep(0.02)
             req_num = 0
 
@@ -114,10 +116,6 @@ class Control():
             badreq = "/ndn/dictionary/" + randstring
             bad_list.append(badreq)
 
-
-        for number in range(1,5):
-            print(f"{number}")
-            time.sleep(1)
 
         print(datetime.now())
 
