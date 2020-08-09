@@ -1,3 +1,5 @@
+#This script is what actually sends insterests to a specified NDN router. You must uncomment or create the right line with the right address to connect to
+
 import time
 import os
 from pyndn import Name

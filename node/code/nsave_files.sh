@@ -2,13 +2,6 @@
 
 #Script that saves data files in client
 
-#plot_outin_data.png
-#stats_file.txt
-#outin.dat
-
-#Take in name arguments
-#EXPNAME=$1
-
 #Check if saved_data directory exists
 DIR="/users/hopew/data_collection/clsaved_data/"
 

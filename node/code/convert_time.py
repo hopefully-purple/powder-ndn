@@ -22,16 +22,10 @@ class Convert():
         with open('data_collection/out.dat', 'r') as out:
             for line in out:
                 otimelist.append(line)
-                #parsed_temp = dp.parse(line)
-                #t_in_seconds = parsed_temp.strftime('%s')
-                #otimelist.append(t_in_seconds)
 
         with open('data_collection/in.dat', 'r') as infile:
             for line in infile:
                 itimelist.append(line)
-                #parsed_temp = dp.parse(line)
-                #t_in_seconds = parsed_temp.strftime('%s')
-                #itimelist.append(t_in_seconds)
         
         #print these lists into temp files, reformatting with rep separations
         self.datasetformat(otimelist, "data_collection/temp_out.dat")
@@ -83,10 +77,6 @@ class Convert():
                     din = datetime.strptime(stop, '%Y-%m-%d %H:%M:%S.%f')
                     duration = din - dout #stop - start incoming - outgoing receive - send
                     result = duration.total_seconds()
-                    
-                    #result = abs(float(data[0]) - float(data[1]))
-                    #if result == 1:
-                        #result = 0
                     results.append(result)
 
         #Put results in results.dat
