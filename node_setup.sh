@@ -2,10 +2,6 @@
 
 #This script is for a node, setting up network
 
-#What is the eth?
-#ifconfig
-#read -p "What is the eth you want to effect?(format: eth#) " eth
-
 changelatency() {
 
 	#How many milliseconds?
