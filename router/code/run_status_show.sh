@@ -20,7 +20,6 @@ echo "Now beginning . . . ."
 echo "Will end in $duration minutes at:"
 date --date="+$totalseconds seconds" +"%Y-%m-%d %H:%M:%S"
 
-#echo "CurrentTime\tFib\tPit\tMeasurements\tCs\tInInterests\tOutInterests\tInData\tOutData\tInNacks\tOutNacks\tSatisfiedInterests\tUnsatisfiedInterests\n" > timed_data.dat
 echo "# Data file for nfdc stats\n" > data_collection/timed_data.dat
 
 for i in 0 1 2 3 4 5; do
@@ -28,10 +27,8 @@ for i in 0 1 2 3 4 5; do
 done
 echo "" > data_collection/temp_nfdc_status.txt
 
-#ENDT=""
-#Error handling attempt
+#Error handling 
 ERROR=false
-#set -e
 trap 'catch $? $LINENO' ERR
 
 catch(){
@@ -64,10 +61,6 @@ do
 	sleep $interval
 done
 
-#$ENDT=date +$F_%T
-#if [ "$ERROR" == false ]; then 
-#	$ENDT=$(date +$F_%T)
-#fi
 
 echo "Finished timing"
 now="$(date)"
@@ -100,14 +93,9 @@ edit(){
 
 edit
 
-#read -p "Plot?(y/n): " plot
-
-#if [ "$plot" == "y" ]; then
 echo "PLOTTING . . . "
 gnuplot -persist -c "code/analyze_data.gnuplot" "$interval seconds for $duration minutes" $interval
 display data_collection/plot_timed_data.png &
-#fi
-
 
 echo "Finished"
 

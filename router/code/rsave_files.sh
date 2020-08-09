@@ -2,14 +2,6 @@
 
 #Script that saves data files in client
 
-#echo_times.txt
-#plot_timed_data.png
-#timed_nfdc_status.txt
-#timed_data.dat
-
-#Take in name arguments
-#EXPNAME=$1
-
 #Check if saved_data directory exists
 DIR="/users/hopew/data_collection/rosaved_data/"
 
