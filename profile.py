@@ -19,15 +19,15 @@ class GLOBALS(object):
 
 
 # define network parameters
-portal.context.defineParameter("node_count", "Client Nodes", portal.ParameterType.INTEGER, 1)
-portal.context.defineParameter("router_count", "Routers", portal.ParameterType.INTEGER, 1)
+portal.context.defineParameter("node_count", "Client Nodes", portal.ParameterType.INTEGER, 5)
+portal.context.defineParameter("router_count", "Routers", portal.ParameterType.INTEGER, 3)
 
 # retrieve the values the user specifies during instantiation
 params = portal.context.bindParameters()
 
 #  check parameter validity
 if params.node_count < 1 or params.node_count > 30:
-    portal.context.reportError(portal.ParameterError("You must choose at least 1 and no more than 4 nodes."))
+    portal.context.reportError(portal.ParameterError("You must choose at least 1 and no more than 30 nodes."))
 
 #  check parameter validity
 if params.router_count < 1 or params.router_count > 3:
