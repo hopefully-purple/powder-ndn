@@ -25,7 +25,6 @@ sudo apt-get install imagemagick -y
 
 #install pyndn client software 
 # Maintained version of pyndn currently does not have packet v0.3 support, so alternate version must be built
-# sudo pip3 install pyndn
 git clone https://github.com/Pesa/PyNDN2 ~/PyNDN2
 cd ~/PyNDN2 && git merge remotes/origin/packet03
 pip3 install ~/PyNDN2
