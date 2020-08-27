@@ -1,5 +1,5 @@
 # powder-ndn
-This repository contains code for implementing NDN (Named Data Networking) on the University of Utah's POWDER testbed. Here is the link to the paper repository written about the research conducted with this repository. https://gitlab.flux.utah.edu/hope/paper-template
+This repository contains code for implementing NDN (Named Data Networking) on the University of Utah's POWDER testbed. The file paper.pdf is the paper written about the research conducted with this repository.
 
 Look at Getting Started for details on setting up.
 
